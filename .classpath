@@ -29,5 +29,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/ForStudy/lib/libthrift-0.9.3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
