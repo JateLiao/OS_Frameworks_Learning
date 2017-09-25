@@ -8,8 +8,8 @@
  */
 package os_frameworks.apache.commons.beanutils;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Test;
-import org.springframework.beans.BeanUtils;
 
 /**
  * TODO 添加类的一句话简单描述.
