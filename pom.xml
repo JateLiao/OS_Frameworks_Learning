@@ -7,6 +7,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OS_Frameworks_Learning Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+
+	<!-- dependencies -->
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -19,11 +21,14 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+
+		<!-- gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+		<!-- gson -->
 
 		<!-- apache.commons -->
 		<dependency>
@@ -71,7 +76,7 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.3</version>
 		</dependency>
-			<!-- apache.commons -->
+		<!-- apache.commons -->
 
 		<!-- Spring -->
 		<dependency>

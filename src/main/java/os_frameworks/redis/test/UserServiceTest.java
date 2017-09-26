@@ -16,9 +16,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.better517na.forStudy.advanced.reflect.jsonutil.JsonUtilsNew3;
 import os_frameworks.redis.client.cache.RedisCache;
 import os_frameworks.redis.entity.UserEntity;
+import utils.JsonUtils;
 
 /**
  * redis测试代码：
@@ -67,7 +67,7 @@ public class UserServiceTest {
         user.setUserNo("24");
         String key = REDIS_KEY + user.getUserNo();
         System.out.println("The key: " + key);
-        caches.set(key, JsonUtilsNew3.toJson(user));
+        caches.set(key, JsonUtils.toJson(user));
         
         String redisValue = caches.get(key);
         System.out.println(redisValue);

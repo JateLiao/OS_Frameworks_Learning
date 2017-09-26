@@ -16,7 +16,7 @@
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>file:#{systemProperties['user.dir']}/src/com/better517na/forStudy/frameworks/quartz/quartz.properties</value>
+                <value>file:#{systemProperties['user.dir']}/src/OS_Frameworks_Learning/src/main/java/os_frameworks/quartz/quartz.properties</value>
             </list>
         </property>
         
