@@ -16,7 +16,7 @@
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>file:#{systemProperties['user.dir']}/src/OS_Frameworks_Learning/src/main/java/os_frameworks/quartz/quartz.properties</value>
+                <value>classpath:src/main/java/os_frameworks/quartz/quartz.properties</value>
             </list>
         </property>
         
@@ -26,7 +26,7 @@
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 
     <!-- 扫描包 -->
-    <context:component-scan base-package="com.better517na.forStudy.frameworks.quartz" />
+    <context:component-scan base-package="os_frameworks.quartz" />
 
     <!-- 定时器-->
     <task:annotation-driven />
@@ -43,7 +43,7 @@
 	</bean>
 
 	<!-- 业务对象 -->
-	<bean id="bizObject" class="com.better517na.forStudy.frameworks.quartz.JobTask" />
+	<bean id="bizObject" class="os_frameworks.quartz.JobTask" />
 
 	<!-- 调度业务 -->
 	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
