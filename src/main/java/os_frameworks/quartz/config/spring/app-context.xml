@@ -15,8 +15,8 @@
     <bean id="propertyConfigurer"
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
-            <list>
-                <value>classpath:src/main/java/os_frameworks/quartz/quartz.properties</value>
+            <list> 
+                <value>classpath*:os_frameworks/quartz/quartz.properties</value>
             </list>
         </property>
         

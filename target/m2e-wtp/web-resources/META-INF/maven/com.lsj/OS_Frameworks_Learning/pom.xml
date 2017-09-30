@@ -291,11 +291,6 @@
 		<!-- jedis -->
 
 		<!-- sl4j -->
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.9.0</version>
-		</dependency>
 		<!-- sl4j -->
 
 	</dependencies>

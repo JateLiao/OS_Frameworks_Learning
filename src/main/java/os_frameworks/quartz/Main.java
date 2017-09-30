@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
  */
 //@ContextConfiguration("classpath:/com/better517na/forStudy/frameworks/quartz/config/spring/app-context.xml")
 @Component
+@SuppressWarnings("resource")
 public class Main {
     
     
@@ -44,7 +45,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/src/OS_Frameworks_Learning/src/main/java/os_frameworks/quartz/config/spring/app-context.xml");
+        System.out.println(Main.class.getResource("/"));
+        System.out.println(Main.class.getResourceAsStream("/"));
+        System.out.println(Main.class.getClassLoader().getResource("/"));
+        System.out.println(Main.class.getClassLoader().getResourceAsStream("/"));
+        
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:os_frameworks/quartz/config/spring/app-context.xml");
         System.err.println("Work Begin!!!");
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
         System.out.println(configurers);
