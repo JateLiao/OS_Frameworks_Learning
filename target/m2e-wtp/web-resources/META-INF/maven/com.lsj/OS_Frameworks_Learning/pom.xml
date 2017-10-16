@@ -7,6 +7,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OS_Frameworks_Learning Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	
+	<!--  -->
+	<modules>
+	
+	</modules>
+	<!--  -->
 
 	<!-- dependencies -->
 	<dependencies>

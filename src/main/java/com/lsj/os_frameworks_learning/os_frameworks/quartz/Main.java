@@ -6,7 +6,7 @@
  * 修改时间：2017年3月16日
  * 修改内容：新增
  */
-package os_frameworks.quartz;
+package com.lsj.os_frameworks_learning.os_frameworks.quartz;
 
 import javax.annotation.Resource;
 
