@@ -35,7 +35,7 @@ public class ProducerTest {
         try {
             // 创建连接工厂
             ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("192.168.34.130"); // host
+            factory.setHost("192.168.1.34"); // host
             factory.setVirtualHost(Statics.VHOST); // virtual host
             factory.setUsername(Statics.USERNAME); // username
             factory.setPassword(Statics.PASSWORD); // pwd
@@ -82,7 +82,8 @@ public class ProducerTest {
              * 第五个参数为队列的其他参数
              */
             long timestamp = new Date().getTime();
-            String message = "Hello RabbitMQ For TianZhong Test.";
+            DateTime date = new DateTime();
+            String message = "[" + date.toString("yyyy-MM-dd HH:mm:ss") + "]: " + "Hello RabbitMQ For TianZhong Test.";
             Map<String, Object> headers = new HashMap<>();
             headers.put("sent_time", new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
             headers.put("producer_pid", String.valueOf(Thread.currentThread().getName()));
