@@ -6,7 +6,7 @@
  * 修改时间：2016年11月17日
  * 修改内容：新增
  */
-package os_frameworks.guava.first;
+package com.lsj.os_frameworks_learning.os_frameworks.guava.first;
 
 import java.io.IOException;
 
