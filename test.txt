@@ -1,2 +1,0 @@
-this is a tmp file to test 
-reset revert rebase.
