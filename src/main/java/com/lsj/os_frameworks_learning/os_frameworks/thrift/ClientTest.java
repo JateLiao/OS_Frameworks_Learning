@@ -50,7 +50,8 @@ public class ClientTest {
     static {
         // thrift客户端
         try {
-            new Thread() { 
+            new Thread() {
+                @Override
                 public void run() {
                     new ThriftServer();
                 };

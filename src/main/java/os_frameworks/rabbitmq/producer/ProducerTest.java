@@ -81,7 +81,7 @@ public class ProducerTest {
              * 第四个参数为当所有消费者客户端连接断开时是否自动删除队列、 
              * 第五个参数为队列的其他参数
              */
-            long timestamp = new Date().getTime();
+            long timestamp = System.currentTimeMillis();
             String message = "Hello RabbitMQ For TianZhong Test.";
             Map<String, Object> headers = new HashMap<>();
             headers.put("sent_time", new DateTime().toString("yyyy-MM-dd HH:mm:ss"));

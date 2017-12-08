@@ -51,6 +51,7 @@ public class ClientTest {
         // thrift客户端
         try {
             new Thread() { 
+                @Override
                 public void run() {
                     new ThriftServer();
                 };

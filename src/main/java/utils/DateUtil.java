@@ -44,10 +44,12 @@ public class DateUtil {
 
     public static String dateToString(Date date, String pattern) {
         String temp = "";
-        if (pattern != null && !"".equals(pattern))
+        if (pattern != null && !"".equals(pattern)) {
             temp = pattern;
-        else
+        }
+        else{
             temp = "yyyy-MM-dd HH:mm:ss";
+        }
         SimpleDateFormat df = new SimpleDateFormat(temp);
         try {
             String str = df.format(date);
