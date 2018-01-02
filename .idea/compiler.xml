@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Eclipse" />
+    <excludeFromCompile>
+      <file url="file://E:/Workspace/MyJava/JavaTools/src/deleteDownloadedMoviesExtraString/DeleteDownloadedMoviesExtraString.java" />
+    </excludeFromCompile>
+    <bytecodeTargetLevel target="1.7">
+      <module name="OS_Frameworks_Learning" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -40,14 +40,15 @@ public class SortTest {
     public static void main(String[] args) {
         Comparator<?> cmp = ComparableComparator.getInstance();
         // cmp = ComparatorUtils.reversedComparator(cmp);
-        
+
+
         List<Model> list = new ArrayList<>();
         list.add(new Model("2017-08-03 16:55:51"));
         list.add(new Model("2017-08-03 16:55:21"));
         list.add(new Model("2017-08-03 16:55:41"));
         list.add(new Model("2017-08-03 16:55:11"));
         list.add(new Model("2017-08-03 16:55:01"));
-        
+
         System.out.println("Before Sort: " + list);
         
         List<Object> sortFileds = new ArrayList<>();
