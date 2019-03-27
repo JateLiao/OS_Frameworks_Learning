@@ -8,6 +8,8 @@
  */
 package com.lsj.os_frameworks_learning.os_frameworks.thrift;
 
+import com.lsj.os_frameworks_learning.os_frameworks.thrift.server.ThriftServer;
+import com.lsj.os_frameworks_learning.os_frameworks.thrift.service.IThriftTestServcie;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
@@ -15,8 +17,6 @@ import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 import org.springframework.test.context.ContextConfiguration;
 
-import os_frameworks.thrift.server.ThriftServer;
-import os_frameworks.thrift.service.IThriftTestServcie;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -30,7 +30,7 @@ import os_frameworks.thrift.service.IThriftTestServcie;
  * 
  * @author tianzhong
  */
-@ContextConfiguration("/com/better517na/config/spring/app-context*.xml")
+@ContextConfiguration("/com/lsj/os_frameworks_learning/os_frameworks/redis/config/spring/app-context.xml")
 public class ClientTest {
     /**
      * 添加字段注释.

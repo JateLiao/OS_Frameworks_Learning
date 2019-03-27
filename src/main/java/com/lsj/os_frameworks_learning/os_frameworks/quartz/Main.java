@@ -50,7 +50,7 @@ public class Main {
         System.out.println(Main.class.getClassLoader().getResource("/"));
         System.out.println(Main.class.getClassLoader().getResourceAsStream("/"));
         
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:os_frameworks/quartz/config/spring/app-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:com/lsj/os_frameworks_learning/os_frameworks/quartz/config/spring/app-context.xml");
         System.err.println("Work Begin!!!");
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
         System.out.println(configurers);

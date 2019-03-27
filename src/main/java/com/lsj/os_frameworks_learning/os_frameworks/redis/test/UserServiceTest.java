@@ -8,17 +8,16 @@
  */
 package com.lsj.os_frameworks_learning.os_frameworks.redis.test;
 
-import javax.annotation.Resource;
-
+import com.lsj.os_frameworks_learning.os_frameworks.redis.client.cache.RedisCache;
+import com.lsj.os_frameworks_learning.os_frameworks.redis.entity.UserEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-
-import os_frameworks.redis.client.cache.RedisCache;
-import os_frameworks.redis.entity.UserEntity;
 import utils.JsonUtils;
+
+import javax.annotation.Resource;
 
 /**
  * redis测试代码：
@@ -27,7 +26,7 @@ import utils.JsonUtils;
  * 
  * @author     tianzhong
  */
-@ContextConfiguration("classpath:/com/better517na/forStudy/frameworks/redis/config/spring/app-context.xml")
+@ContextConfiguration("classpath:/com/lsj/os_frameworks_learning/os_frameworks/redis/config/spring/app-context.xml")
 public class UserServiceTest {
     
     /**

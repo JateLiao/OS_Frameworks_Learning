@@ -8,10 +8,9 @@
  */
 package com.lsj.os_frameworks_learning.os_frameworks.thrift.service.impl;
 
+import com.lsj.os_frameworks_learning.os_frameworks.thrift.service.IThriftTestServcie;
 import org.apache.thrift.TException;
 import org.springframework.stereotype.Component;
-
-import os_frameworks.thrift.service.IThriftTestServcie.Iface;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -26,7 +25,7 @@ import os_frameworks.thrift.service.IThriftTestServcie.Iface;
  * @author tianzhong
  */
 @Component("thriftTestService")
-public class ThriftTestServcieImpl implements Iface {
+public class ThriftTestServcieImpl implements IThriftTestServcie.Iface {
 
     /**
      * {@inheritDoc}.

@@ -8,6 +8,8 @@
  */
 package com.lsj.os_frameworks_learning.os_frameworks.thrift.server;
 
+import com.lsj.os_frameworks_learning.os_frameworks.thrift.service.IThriftTestServcie;
+import com.lsj.os_frameworks_learning.os_frameworks.thrift.service.impl.ThriftTestServcieImpl;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.server.TServer;
@@ -16,9 +18,6 @@ import org.apache.thrift.transport.TServerSocket;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import os_frameworks.thrift.service.IThriftTestServcie;
-import os_frameworks.thrift.service.IThriftTestServcie.Iface;
-import os_frameworks.thrift.service.impl.ThriftTestServcieImpl;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -55,7 +54,7 @@ public class ThriftServer {
             // TServer server = new TSimpleServer(args);
             // server.serve();
 
-            TProcessor tprocessor = new IThriftTestServcie.Processor<Iface>(new ThriftTestServcieImpl());
+            TProcessor tprocessor = new IThriftTestServcie.Processor<IThriftTestServcie.Iface>(new ThriftTestServcieImpl());
 
             TServerSocket serverTransport = new TServerSocket(serverPort);
             TThreadPoolServer.Args ttpsArgs = new TThreadPoolServer.Args(serverTransport);
