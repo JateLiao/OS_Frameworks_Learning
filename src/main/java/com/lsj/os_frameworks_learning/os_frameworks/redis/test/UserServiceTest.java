@@ -50,7 +50,7 @@ public class UserServiceTest {
     public void before(){
         System.out.println("before.........");
         
-        context = new ClassPathXmlApplicationContext("classpath:/com/better517na/forStudy/frameworks/redis/config/spring/app-context.xml");
+        context = new ClassPathXmlApplicationContext("classpath:/com/better517na/forStudy/frameworks/redis/config/spring/app-context-quartz.xml");
         caches = context.getBean(RedisCache.class);
     }
 

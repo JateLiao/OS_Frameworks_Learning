@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
  * 
  * @author     tianzhong
  */
-//@ContextConfiguration("classpath:/com/better517na/forStudy/frameworks/quartz/config/spring/app-context.xml")
+//@ContextConfiguration("classpath:/com/better517na/forStudy/frameworks/quartz/config/spring/app-context-quartz.xml")
 @Component
 @SuppressWarnings("resource")
 public class Main {
@@ -50,7 +50,7 @@ public class Main {
         System.out.println(Main.class.getClassLoader().getResource("/"));
         System.out.println(Main.class.getClassLoader().getResourceAsStream("/"));
         
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:com/lsj/os_frameworks_learning/os_frameworks/quartz/config/spring/app-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/com/lsj/os_frameworks_learning/os_frameworks/quartz/config/spring/app-context-quartz.xml");
         System.err.println("Work Begin!!!");
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
         System.out.println(configurers);
@@ -60,7 +60,7 @@ public class Main {
     
     @Test
     public void main() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/src/OS_Frameworks_Learning/src/main/java/os_frameworks/quartz/config/spring/app-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/src/OS_Frameworks_Learning/src/main/java/os_frameworks/quartz/config/spring/app-context-quartz.xml");
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
         System.out.println(configurers);
         

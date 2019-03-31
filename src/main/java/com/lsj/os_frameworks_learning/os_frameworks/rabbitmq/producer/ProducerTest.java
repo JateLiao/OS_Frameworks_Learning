@@ -14,9 +14,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.lsj.os_frameworks_learning.os_frameworks.rabbitmq.Statics;
 import org.joda.time.DateTime;
 
-import os_frameworks.rabbitmq.Statics;
 import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

@@ -10,7 +10,7 @@ package com.lsj.os_frameworks_learning.os_frameworks.rabbitmq.consumer;
 
 import java.io.IOException;
 
-import os_frameworks.rabbitmq.Statics;
+import com.lsj.os_frameworks_learning.os_frameworks.rabbitmq.Statics;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

@@ -15,6 +15,10 @@ import java.util.Random;
 @Component("service")
 public class ServiceImpl {
     
+    static {
+        System.out.println("ServiceImpl statrts on.");
+    }
+    
     public int getNumber() {
         return new Random().nextInt(10) + 1;
     }
