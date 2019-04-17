@@ -30,7 +30,6 @@ import org.springframework.test.context.ContextConfiguration;
  * 
  * @author tianzhong
  */
-@ContextConfiguration("/com/lsj/os_frameworks_learning/os_frameworks/redis/config/spring/app-context.xml")
 public class ClientTest {
     /**
      * 添加字段注释.
