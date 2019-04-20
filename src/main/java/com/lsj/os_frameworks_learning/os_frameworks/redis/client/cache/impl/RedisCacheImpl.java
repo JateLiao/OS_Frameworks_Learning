@@ -22,8 +22,12 @@ import java.util.Map;
  * 
  * @author tianzhong
  */
-@Component
+@Component("redisCache")
 public class RedisCacheImpl<V> implements RedisCache<String, V> {
+    
+    static {
+        System.out.println("RedisCache begin initial.");
+    }
     
     /**
      * 添加字段注释.

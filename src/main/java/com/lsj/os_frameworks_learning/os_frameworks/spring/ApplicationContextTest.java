@@ -2,6 +2,7 @@ package com.lsj.os_frameworks_learning.os_frameworks.spring;
 
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionReader;
@@ -35,5 +36,7 @@ public class ApplicationContextTest {
     
         ConcurrentHashMap<String, String> concurrentHashMap;
         HashMap hashMap;
+        FactoryBean factoryBean;
+        BeanFactory beanFactory1;
     }
 }

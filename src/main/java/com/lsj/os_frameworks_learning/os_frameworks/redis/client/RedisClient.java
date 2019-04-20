@@ -27,10 +27,10 @@ import redis.clients.jedis.JedisPool;
  * @author     tianzhong
  */
 @Component
-public class RedisClient {
-    // static{
-    // System.out.println(">>>>>>Redis Client Run!");
-    // }
+public  class RedisClient {
+        static {
+        System.out.println(">>>>>>Redis Client Run!");
+    }
 
     @Resource(name = "pool")
     private JedisPool pool;
@@ -59,5 +59,23 @@ public class RedisClient {
     
     public void returnBrokenResource(Jedis jedis) {
         pool.returnBrokenResource(jedis);
+    }
+    
+    /**
+     * 获取字段值： pool.
+     *
+     * @return 返回字段值： pool.
+     */
+    public JedisPool getPool() {
+        return pool;
+    }
+    
+    /**
+     * 设置字段值： pool.
+     *
+     * @param pool 要设置的字段：pool .
+     */
+    public void setPool(JedisPool pool) {
+        this.pool = pool;
     }
 }
