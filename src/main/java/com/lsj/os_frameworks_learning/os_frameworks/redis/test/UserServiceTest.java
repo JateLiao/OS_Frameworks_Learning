@@ -10,15 +10,18 @@ package com.lsj.os_frameworks_learning.os_frameworks.redis.test;
 
 import com.lsj.os_frameworks_learning.os_frameworks.redis.client.cache.RedisCache;
 import com.lsj.os_frameworks_learning.os_frameworks.redis.entity.UserEntity;
+import com.lsj.os_frameworks_learning.test.BaseTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import utils.DateUtil;
 import utils.JsonUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * redis测试代码：
@@ -27,13 +30,13 @@ import javax.annotation.Resource;
  *
  * @author tianzhong
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 //@SpringBootTest(classes = UserServiceTest.class)
 //@ComponentScan("com.lsj.os_frameworks_learning.os_frameworks.redis")
 @ContextConfiguration(locations = {"classpath:com/lsj/os_frameworks_learning/os_frameworks/redis/app-context-redis.xml"})
-public class UserServiceTest {
+public class UserServiceTest extends BaseTest {
     
-    /**
+    /**f
      * 添加字段注释.
      */
     private static final String REDIS_KEY = "UserServiceKey";
@@ -52,7 +55,7 @@ public class UserServiceTest {
     @SuppressWarnings("unchecked")
     @Before
     public void before() {
-        System.out.println("before.........");
+        System.out.println(DateUtil.dateToString(new Date()) + "  before.........");
         
         //context = new ClassPathXmlApplicationContext("classpath:/com/better517na/forStudy/frameworks/redis/config/spring/app-context-quartz.xml");
         //caches = context.getBean(RedisCache.class);
