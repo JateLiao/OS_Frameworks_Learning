@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.LessonstepMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Lessonstep">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lesson_id" jdbcType="INTEGER" property="lessonId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="show_order" jdbcType="INTEGER" property="showOrder" />
+    <result column="need_finish" jdbcType="TINYINT" property="needFinish" />
+    <result column="need_report" jdbcType="TINYINT" property="needReport" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `lesson_id`, `name`, `type`, `show_order`, `need_finish`, `need_report`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_lesson_step`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Lessonstep">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_lesson_step` (`lesson_id`, `name`, `type`, 
+      `show_order`, `need_finish`, `need_report`
+      )
+    values (#{lessonId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{showOrder,jdbcType=INTEGER}, #{needFinish,jdbcType=TINYINT}, #{needReport,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Lessonstep">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_lesson_step`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lessonId != null">
+        `lesson_id`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="showOrder != null">
+        `show_order`,
+      </if>
+      <if test="needFinish != null">
+        `need_finish`,
+      </if>
+      <if test="needReport != null">
+        `need_report`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lessonId != null">
+        #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="showOrder != null">
+        #{showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="needFinish != null">
+        #{needFinish,jdbcType=TINYINT},
+      </if>
+      <if test="needReport != null">
+        #{needReport,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Lessonstep">
+    update `tab_lesson_step`
+    <set>
+      <if test="lessonId != null">
+        `lesson_id` = #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="showOrder != null">
+        `show_order` = #{showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="needFinish != null">
+        `need_finish` = #{needFinish,jdbcType=TINYINT},
+      </if>
+      <if test="needReport != null">
+        `need_report` = #{needReport,jdbcType=TINYINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Lessonstep">
+    update `tab_lesson_step`
+    set `lesson_id` = #{lessonId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=TINYINT},
+      `show_order` = #{showOrder,jdbcType=INTEGER},
+      `need_finish` = #{needFinish,jdbcType=TINYINT},
+      `need_report` = #{needReport,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

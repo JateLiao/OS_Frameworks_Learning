@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.WechatmpmsgvideoMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgvideo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="msg_id" jdbcType="VARCHAR" property="msgId" />
+    <result column="thumb_media_id" jdbcType="VARCHAR" property="thumbMediaId" />
+    <result column="media_id" jdbcType="VARCHAR" property="mediaId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `msg_id`, `thumb_media_id`, `media_id`, `create_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_wechat_mp_msg_video`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgvideo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wechat_mp_msg_video` (`msg_id`, `thumb_media_id`, `media_id`
+      )
+    values (#{msgId,jdbcType=VARCHAR}, #{thumbMediaId,jdbcType=VARCHAR}, #{mediaId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgvideo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wechat_mp_msg_video`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        `msg_id`,
+      </if>
+      <if test="thumbMediaId != null">
+        `thumb_media_id`,
+      </if>
+      <if test="mediaId != null">
+        `media_id`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbMediaId != null">
+        #{thumbMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaId != null">
+        #{mediaId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgvideo">
+    update `tab_wechat_mp_msg_video`
+    <set>
+      <if test="msgId != null">
+        `msg_id` = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbMediaId != null">
+        `thumb_media_id` = #{thumbMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaId != null">
+        `media_id` = #{mediaId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgvideo">
+    update `tab_wechat_mp_msg_video`
+    set `msg_id` = #{msgId,jdbcType=VARCHAR},
+      `thumb_media_id` = #{thumbMediaId,jdbcType=VARCHAR},
+      `media_id` = #{mediaId,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

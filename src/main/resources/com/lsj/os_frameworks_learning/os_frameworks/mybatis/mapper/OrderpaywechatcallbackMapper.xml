@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.OrderpaywechatcallbackMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Orderpaywechatcallback">
+    <id column="seq_id" jdbcType="BIGINT" property="seqId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Orderpaywechatcallback">
+    <result column="response_payload" jdbcType="LONGVARCHAR" property="responsePayload" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `seq_id`, `order_no`, `create_time`, `update_time`
+  </sql>
+  <sql id="Blob_Column_List">
+    `response_payload`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `tab_r_order_pay_wechat_callback`
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Orderpaywechatcallback">
+    insert into `tab_r_order_pay_wechat_callback` (`seq_id`, `order_no`, `response_payload`
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{responsePayload,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Orderpaywechatcallback">
+    insert into `tab_r_order_pay_wechat_callback`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        `seq_id`,
+      </if>
+      <if test="orderNo != null">
+        `order_no`,
+      </if>
+      <if test="responsePayload != null">
+        `response_payload`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        #{seqId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="responsePayload != null">
+        #{responsePayload,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Orderpaywechatcallback">
+    update `tab_r_order_pay_wechat_callback`
+    <set>
+      <if test="orderNo != null">
+        `order_no` = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="responsePayload != null">
+        `response_payload` = #{responsePayload,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Orderpaywechatcallback">
+    update `tab_r_order_pay_wechat_callback`
+    set `order_no` = #{orderNo,jdbcType=VARCHAR},
+      `response_payload` = #{responsePayload,jdbcType=LONGVARCHAR}
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Orderpaywechatcallback">
+    update `tab_r_order_pay_wechat_callback`
+    set `order_no` = #{orderNo,jdbcType=VARCHAR}
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </update>
+</mapper>

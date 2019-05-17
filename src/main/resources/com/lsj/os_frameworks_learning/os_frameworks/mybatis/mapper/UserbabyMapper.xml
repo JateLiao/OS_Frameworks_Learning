@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserbabyMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userbaby">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_user_id" jdbcType="INTEGER" property="parentUserId" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `parent_user_id`, `sex`, `nickname`, `avatar`, `birthday`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_user_baby`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userbaby">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_baby` (`parent_user_id`, `sex`, `nickname`, 
+      `avatar`, `birthday`)
+    values (#{parentUserId,jdbcType=INTEGER}, #{sex,jdbcType=TINYINT}, #{nickname,jdbcType=VARCHAR}, 
+      #{avatar,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userbaby">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_baby`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentUserId != null">
+        `parent_user_id`,
+      </if>
+      <if test="sex != null">
+        `sex`,
+      </if>
+      <if test="nickname != null">
+        `nickname`,
+      </if>
+      <if test="avatar != null">
+        `avatar`,
+      </if>
+      <if test="birthday != null">
+        `birthday`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentUserId != null">
+        #{parentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userbaby">
+    update `tab_user_baby`
+    <set>
+      <if test="parentUserId != null">
+        `parent_user_id` = #{parentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        `sex` = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="nickname != null">
+        `nickname` = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        `avatar` = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        `birthday` = #{birthday,jdbcType=DATE},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userbaby">
+    update `tab_user_baby`
+    set `parent_user_id` = #{parentUserId,jdbcType=INTEGER},
+      `sex` = #{sex,jdbcType=TINYINT},
+      `nickname` = #{nickname,jdbcType=VARCHAR},
+      `avatar` = #{avatar,jdbcType=VARCHAR},
+      `birthday` = #{birthday,jdbcType=DATE}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

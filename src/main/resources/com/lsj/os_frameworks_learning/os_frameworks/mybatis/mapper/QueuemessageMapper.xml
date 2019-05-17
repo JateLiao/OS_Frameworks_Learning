@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.QueuemessageMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Queuemessage">
+    <id column="key" jdbcType="VARCHAR" property="key" />
+    <result column="delivery_type" jdbcType="TINYINT" property="deliveryType" />
+    <result column="provier_id" jdbcType="TINYINT" property="provierId" />
+    <result column="message_id" jdbcType="VARCHAR" property="messageId" />
+    <result column="topic" jdbcType="VARCHAR" property="topic" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="large_body" jdbcType="TINYINT" property="largeBody" />
+    <result column="delivery_status" jdbcType="TINYINT" property="deliveryStatus" />
+    <result column="schedule_delivery_time" jdbcType="TIMESTAMP" property="scheduleDeliveryTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Queuemessage">
+    <result column="body" jdbcType="LONGVARCHAR" property="body" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `key`, `delivery_type`, `provier_id`, `message_id`, `topic`, `tag`, `large_body`, 
+    `delivery_status`, `schedule_delivery_time`, `create_time`, `update_time`
+  </sql>
+  <sql id="Blob_Column_List">
+    `body`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `tab_queue_message`
+    where `key` = #{key,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Queuemessage">
+    insert into `tab_queue_message` (`key`, `delivery_type`, `provier_id`, 
+      `message_id`, `topic`, `tag`, 
+      `large_body`, `delivery_status`, `schedule_delivery_time`, 
+      `body`)
+    values (#{key,jdbcType=VARCHAR}, #{deliveryType,jdbcType=TINYINT}, #{provierId,jdbcType=TINYINT}, 
+      #{messageId,jdbcType=VARCHAR}, #{topic,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{largeBody,jdbcType=TINYINT}, #{deliveryStatus,jdbcType=TINYINT}, #{scheduleDeliveryTime,jdbcType=TIMESTAMP}, 
+      #{body,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Queuemessage">
+    insert into `tab_queue_message`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="key != null">
+        `key`,
+      </if>
+      <if test="deliveryType != null">
+        `delivery_type`,
+      </if>
+      <if test="provierId != null">
+        `provier_id`,
+      </if>
+      <if test="messageId != null">
+        `message_id`,
+      </if>
+      <if test="topic != null">
+        `topic`,
+      </if>
+      <if test="tag != null">
+        `tag`,
+      </if>
+      <if test="largeBody != null">
+        `large_body`,
+      </if>
+      <if test="deliveryStatus != null">
+        `delivery_status`,
+      </if>
+      <if test="scheduleDeliveryTime != null">
+        `schedule_delivery_time`,
+      </if>
+      <if test="body != null">
+        `body`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryType != null">
+        #{deliveryType,jdbcType=TINYINT},
+      </if>
+      <if test="provierId != null">
+        #{provierId,jdbcType=TINYINT},
+      </if>
+      <if test="messageId != null">
+        #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null">
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="largeBody != null">
+        #{largeBody,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryStatus != null">
+        #{deliveryStatus,jdbcType=TINYINT},
+      </if>
+      <if test="scheduleDeliveryTime != null">
+        #{scheduleDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="body != null">
+        #{body,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Queuemessage">
+    update `tab_queue_message`
+    <set>
+      <if test="deliveryType != null">
+        `delivery_type` = #{deliveryType,jdbcType=TINYINT},
+      </if>
+      <if test="provierId != null">
+        `provier_id` = #{provierId,jdbcType=TINYINT},
+      </if>
+      <if test="messageId != null">
+        `message_id` = #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null">
+        `topic` = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        `tag` = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="largeBody != null">
+        `large_body` = #{largeBody,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryStatus != null">
+        `delivery_status` = #{deliveryStatus,jdbcType=TINYINT},
+      </if>
+      <if test="scheduleDeliveryTime != null">
+        `schedule_delivery_time` = #{scheduleDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="body != null">
+        `body` = #{body,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `key` = #{key,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Queuemessage">
+    update `tab_queue_message`
+    set `delivery_type` = #{deliveryType,jdbcType=TINYINT},
+      `provier_id` = #{provierId,jdbcType=TINYINT},
+      `message_id` = #{messageId,jdbcType=VARCHAR},
+      `topic` = #{topic,jdbcType=VARCHAR},
+      `tag` = #{tag,jdbcType=VARCHAR},
+      `large_body` = #{largeBody,jdbcType=TINYINT},
+      `delivery_status` = #{deliveryStatus,jdbcType=TINYINT},
+      `schedule_delivery_time` = #{scheduleDeliveryTime,jdbcType=TIMESTAMP},
+      `body` = #{body,jdbcType=LONGVARCHAR}
+    where `key` = #{key,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Queuemessage">
+    update `tab_queue_message`
+    set `delivery_type` = #{deliveryType,jdbcType=TINYINT},
+      `provier_id` = #{provierId,jdbcType=TINYINT},
+      `message_id` = #{messageId,jdbcType=VARCHAR},
+      `topic` = #{topic,jdbcType=VARCHAR},
+      `tag` = #{tag,jdbcType=VARCHAR},
+      `large_body` = #{largeBody,jdbcType=TINYINT},
+      `delivery_status` = #{deliveryStatus,jdbcType=TINYINT},
+      `schedule_delivery_time` = #{scheduleDeliveryTime,jdbcType=TIMESTAMP}
+    where `key` = #{key,jdbcType=VARCHAR}
+  </update>
+</mapper>

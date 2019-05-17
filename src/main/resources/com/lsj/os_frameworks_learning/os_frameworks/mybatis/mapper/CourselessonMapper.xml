@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.CourselessonMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Courselesson">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="lesson_id" jdbcType="INTEGER" property="lessonId" />
+    <result column="lesson_order" jdbcType="INTEGER" property="lessonOrder" />
+    <result column="start_time" jdbcType="INTEGER" property="startTime" />
+    <result column="course_segment_id" jdbcType="INTEGER" property="courseSegmentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `course_id`, `lesson_id`, `lesson_order`, `start_time`, `course_segment_id`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_course_lesson`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Courselesson">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_course_lesson` (`course_id`, `lesson_id`, `lesson_order`, 
+      `start_time`, `course_segment_id`)
+    values (#{courseId,jdbcType=INTEGER}, #{lessonId,jdbcType=INTEGER}, #{lessonOrder,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=INTEGER}, #{courseSegmentId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Courselesson">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_course_lesson`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        `course_id`,
+      </if>
+      <if test="lessonId != null">
+        `lesson_id`,
+      </if>
+      <if test="lessonOrder != null">
+        `lesson_order`,
+      </if>
+      <if test="startTime != null">
+        `start_time`,
+      </if>
+      <if test="courseSegmentId != null">
+        `course_segment_id`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonOrder != null">
+        #{lessonOrder,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=INTEGER},
+      </if>
+      <if test="courseSegmentId != null">
+        #{courseSegmentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Courselesson">
+    update `tab_course_lesson`
+    <set>
+      <if test="courseId != null">
+        `course_id` = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        `lesson_id` = #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonOrder != null">
+        `lesson_order` = #{lessonOrder,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        `start_time` = #{startTime,jdbcType=INTEGER},
+      </if>
+      <if test="courseSegmentId != null">
+        `course_segment_id` = #{courseSegmentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Courselesson">
+    update `tab_course_lesson`
+    set `course_id` = #{courseId,jdbcType=INTEGER},
+      `lesson_id` = #{lessonId,jdbcType=INTEGER},
+      `lesson_order` = #{lessonOrder,jdbcType=INTEGER},
+      `start_time` = #{startTime,jdbcType=INTEGER},
+      `course_segment_id` = #{courseSegmentId,jdbcType=INTEGER}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

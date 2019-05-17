@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.WechatInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.WechatInfoDo">
+    <id column="seq_id" jdbcType="INTEGER" property="seqId" />
+    <result column="wechat_app_name" jdbcType="VARCHAR" property="wechatAppName" />
+    <result column="wechat_app_id" jdbcType="VARCHAR" property="wechatAppId" />
+    <result column="wechat_secret" jdbcType="VARCHAR" property="wechatSecret" />
+    <result column="wechat_app_type" jdbcType="TINYINT" property="wechatAppType" />
+    <result column="wechat_default_mp_flag" jdbcType="TINYINT" property="wechatDefaultMpFlag" />
+    <result column="wechat_raw_id" jdbcType="VARCHAR" property="wechatRawId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    seq_id, wechat_app_name, wechat_app_id, wechat_secret, wechat_app_type, wechat_default_mp_flag, 
+    wechat_raw_id
+  </sql>
+  <select id="selectByExample" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.WechatInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tab_wechat_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tab_wechat_info
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tab_wechat_info
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.WechatInfoDoExample">
+    delete from tab_wechat_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.WechatInfoDo">
+    <selectKey keyProperty="seqId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tab_wechat_info (wechat_app_name, wechat_app_id, wechat_secret, 
+      wechat_app_type, wechat_default_mp_flag, wechat_raw_id
+      )
+    values (#{wechatAppName,jdbcType=VARCHAR}, #{wechatAppId,jdbcType=VARCHAR}, #{wechatSecret,jdbcType=VARCHAR}, 
+      #{wechatAppType,jdbcType=TINYINT}, #{wechatDefaultMpFlag,jdbcType=TINYINT}, #{wechatRawId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.WechatInfoDo">
+    <selectKey keyProperty="seqId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tab_wechat_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wechatAppName != null">
+        wechat_app_name,
+      </if>
+      <if test="wechatAppId != null">
+        wechat_app_id,
+      </if>
+      <if test="wechatSecret != null">
+        wechat_secret,
+      </if>
+      <if test="wechatAppType != null">
+        wechat_app_type,
+      </if>
+      <if test="wechatDefaultMpFlag != null">
+        wechat_default_mp_flag,
+      </if>
+      <if test="wechatRawId != null">
+        wechat_raw_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wechatAppName != null">
+        #{wechatAppName,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAppId != null">
+        #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatSecret != null">
+        #{wechatSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAppType != null">
+        #{wechatAppType,jdbcType=TINYINT},
+      </if>
+      <if test="wechatDefaultMpFlag != null">
+        #{wechatDefaultMpFlag,jdbcType=TINYINT},
+      </if>
+      <if test="wechatRawId != null">
+        #{wechatRawId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.WechatInfoDoExample" resultType="java.lang.Long">
+    select count(*) from tab_wechat_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tab_wechat_info
+    <set>
+      <if test="record.seqId != null">
+        seq_id = #{record.seqId,jdbcType=INTEGER},
+      </if>
+      <if test="record.wechatAppName != null">
+        wechat_app_name = #{record.wechatAppName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechatAppId != null">
+        wechat_app_id = #{record.wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechatSecret != null">
+        wechat_secret = #{record.wechatSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechatAppType != null">
+        wechat_app_type = #{record.wechatAppType,jdbcType=TINYINT},
+      </if>
+      <if test="record.wechatDefaultMpFlag != null">
+        wechat_default_mp_flag = #{record.wechatDefaultMpFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.wechatRawId != null">
+        wechat_raw_id = #{record.wechatRawId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tab_wechat_info
+    set seq_id = #{record.seqId,jdbcType=INTEGER},
+      wechat_app_name = #{record.wechatAppName,jdbcType=VARCHAR},
+      wechat_app_id = #{record.wechatAppId,jdbcType=VARCHAR},
+      wechat_secret = #{record.wechatSecret,jdbcType=VARCHAR},
+      wechat_app_type = #{record.wechatAppType,jdbcType=TINYINT},
+      wechat_default_mp_flag = #{record.wechatDefaultMpFlag,jdbcType=TINYINT},
+      wechat_raw_id = #{record.wechatRawId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.WechatInfoDo">
+    update tab_wechat_info
+    <set>
+      <if test="wechatAppName != null">
+        wechat_app_name = #{wechatAppName,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAppId != null">
+        wechat_app_id = #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatSecret != null">
+        wechat_secret = #{wechatSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAppType != null">
+        wechat_app_type = #{wechatAppType,jdbcType=TINYINT},
+      </if>
+      <if test="wechatDefaultMpFlag != null">
+        wechat_default_mp_flag = #{wechatDefaultMpFlag,jdbcType=TINYINT},
+      </if>
+      <if test="wechatRawId != null">
+        wechat_raw_id = #{wechatRawId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.WechatInfoDo">
+    update tab_wechat_info
+    set wechat_app_name = #{wechatAppName,jdbcType=VARCHAR},
+      wechat_app_id = #{wechatAppId,jdbcType=VARCHAR},
+      wechat_secret = #{wechatSecret,jdbcType=VARCHAR},
+      wechat_app_type = #{wechatAppType,jdbcType=TINYINT},
+      wechat_default_mp_flag = #{wechatDefaultMpFlag,jdbcType=TINYINT},
+      wechat_raw_id = #{wechatRawId,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </update>
+</mapper>

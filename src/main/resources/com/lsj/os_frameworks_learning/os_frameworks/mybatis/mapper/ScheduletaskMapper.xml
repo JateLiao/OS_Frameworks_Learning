@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.ScheduletaskMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Scheduletask">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="schedule_time" jdbcType="TIMESTAMP" property="scheduleTime" />
+    <result column="message_topic" jdbcType="VARCHAR" property="messageTopic" />
+    <result column="message_tag" jdbcType="VARCHAR" property="messageTag" />
+    <result column="send_flag" jdbcType="TINYINT" property="sendFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Scheduletask">
+    <result column="message_body" jdbcType="LONGVARCHAR" property="messageBody" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `schedule_time`, `message_topic`, `message_tag`, `send_flag`, `create_time`, 
+    `update_time`
+  </sql>
+  <sql id="Blob_Column_List">
+    `message_body`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `tab_schedule_task`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Scheduletask">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_schedule_task` (`schedule_time`, `message_topic`, `message_tag`, 
+      `send_flag`, `message_body`)
+    values (#{scheduleTime,jdbcType=TIMESTAMP}, #{messageTopic,jdbcType=VARCHAR}, #{messageTag,jdbcType=VARCHAR}, 
+      #{sendFlag,jdbcType=TINYINT}, #{messageBody,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Scheduletask">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_schedule_task`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scheduleTime != null">
+        `schedule_time`,
+      </if>
+      <if test="messageTopic != null">
+        `message_topic`,
+      </if>
+      <if test="messageTag != null">
+        `message_tag`,
+      </if>
+      <if test="sendFlag != null">
+        `send_flag`,
+      </if>
+      <if test="messageBody != null">
+        `message_body`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scheduleTime != null">
+        #{scheduleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageTopic != null">
+        #{messageTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="messageTag != null">
+        #{messageTag,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFlag != null">
+        #{sendFlag,jdbcType=TINYINT},
+      </if>
+      <if test="messageBody != null">
+        #{messageBody,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Scheduletask">
+    update `tab_schedule_task`
+    <set>
+      <if test="scheduleTime != null">
+        `schedule_time` = #{scheduleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageTopic != null">
+        `message_topic` = #{messageTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="messageTag != null">
+        `message_tag` = #{messageTag,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFlag != null">
+        `send_flag` = #{sendFlag,jdbcType=TINYINT},
+      </if>
+      <if test="messageBody != null">
+        `message_body` = #{messageBody,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Scheduletask">
+    update `tab_schedule_task`
+    set `schedule_time` = #{scheduleTime,jdbcType=TIMESTAMP},
+      `message_topic` = #{messageTopic,jdbcType=VARCHAR},
+      `message_tag` = #{messageTag,jdbcType=VARCHAR},
+      `send_flag` = #{sendFlag,jdbcType=TINYINT},
+      `message_body` = #{messageBody,jdbcType=LONGVARCHAR}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Scheduletask">
+    update `tab_schedule_task`
+    set `schedule_time` = #{scheduleTime,jdbcType=TIMESTAMP},
+      `message_topic` = #{messageTopic,jdbcType=VARCHAR},
+      `message_tag` = #{messageTag,jdbcType=VARCHAR},
+      `send_flag` = #{sendFlag,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

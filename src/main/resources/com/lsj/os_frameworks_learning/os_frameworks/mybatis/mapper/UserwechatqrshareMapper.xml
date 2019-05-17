@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserwechatqrshareMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatqrshare">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="wechat_app_id" jdbcType="VARCHAR" property="wechatAppId" />
+    <result column="scene_type" jdbcType="TINYINT" property="sceneType" />
+    <result column="scene" jdbcType="VARCHAR" property="scene" />
+    <result column="target_page_path" jdbcType="VARCHAR" property="targetPagePath" />
+    <result column="source_page_path" jdbcType="VARCHAR" property="sourcePagePath" />
+    <result column="qr_image" jdbcType="VARCHAR" property="qrImage" />
+    <result column="additional_data" jdbcType="VARCHAR" property="additionalData" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `user_id`, `wechat_app_id`, `scene_type`, `scene`, `target_page_path`, `source_page_path`, 
+    `qr_image`, `additional_data`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_user_wechat_qr_share`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatqrshare">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_wechat_qr_share` (`user_id`, `wechat_app_id`, `scene_type`, 
+      `scene`, `target_page_path`, `source_page_path`, 
+      `qr_image`, `additional_data`)
+    values (#{userId,jdbcType=INTEGER}, #{wechatAppId,jdbcType=VARCHAR}, #{sceneType,jdbcType=TINYINT}, 
+      #{scene,jdbcType=VARCHAR}, #{targetPagePath,jdbcType=VARCHAR}, #{sourcePagePath,jdbcType=VARCHAR}, 
+      #{qrImage,jdbcType=VARCHAR}, #{additionalData,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatqrshare">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_wechat_qr_share`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="wechatAppId != null">
+        `wechat_app_id`,
+      </if>
+      <if test="sceneType != null">
+        `scene_type`,
+      </if>
+      <if test="scene != null">
+        `scene`,
+      </if>
+      <if test="targetPagePath != null">
+        `target_page_path`,
+      </if>
+      <if test="sourcePagePath != null">
+        `source_page_path`,
+      </if>
+      <if test="qrImage != null">
+        `qr_image`,
+      </if>
+      <if test="additionalData != null">
+        `additional_data`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="wechatAppId != null">
+        #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneType != null">
+        #{sceneType,jdbcType=TINYINT},
+      </if>
+      <if test="scene != null">
+        #{scene,jdbcType=VARCHAR},
+      </if>
+      <if test="targetPagePath != null">
+        #{targetPagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcePagePath != null">
+        #{sourcePagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="qrImage != null">
+        #{qrImage,jdbcType=VARCHAR},
+      </if>
+      <if test="additionalData != null">
+        #{additionalData,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatqrshare">
+    update `tab_user_wechat_qr_share`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="wechatAppId != null">
+        `wechat_app_id` = #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneType != null">
+        `scene_type` = #{sceneType,jdbcType=TINYINT},
+      </if>
+      <if test="scene != null">
+        `scene` = #{scene,jdbcType=VARCHAR},
+      </if>
+      <if test="targetPagePath != null">
+        `target_page_path` = #{targetPagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcePagePath != null">
+        `source_page_path` = #{sourcePagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="qrImage != null">
+        `qr_image` = #{qrImage,jdbcType=VARCHAR},
+      </if>
+      <if test="additionalData != null">
+        `additional_data` = #{additionalData,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatqrshare">
+    update `tab_user_wechat_qr_share`
+    set `user_id` = #{userId,jdbcType=INTEGER},
+      `wechat_app_id` = #{wechatAppId,jdbcType=VARCHAR},
+      `scene_type` = #{sceneType,jdbcType=TINYINT},
+      `scene` = #{scene,jdbcType=VARCHAR},
+      `target_page_path` = #{targetPagePath,jdbcType=VARCHAR},
+      `source_page_path` = #{sourcePagePath,jdbcType=VARCHAR},
+      `qr_image` = #{qrImage,jdbcType=VARCHAR},
+      `additional_data` = #{additionalData,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

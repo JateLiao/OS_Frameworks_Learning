@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserwechatmpqrMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatmpqr">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="wechat_app_id" jdbcType="VARCHAR" property="wechatAppId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="scene_type" jdbcType="TINYINT" property="sceneType" />
+    <result column="scene" jdbcType="VARCHAR" property="scene" />
+    <result column="is_temp_qr" jdbcType="TINYINT" property="isTempQr" />
+    <result column="qr_ticket" jdbcType="VARCHAR" property="qrTicket" />
+    <result column="qr_image" jdbcType="VARCHAR" property="qrImage" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `wechat_app_id`, `user_id`, `scene_type`, `scene`, `is_temp_qr`, `qr_ticket`, 
+    `qr_image`, `expire_time`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_user_wechat_mp_qr`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatmpqr">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_wechat_mp_qr` (`wechat_app_id`, `user_id`, `scene_type`, 
+      `scene`, `is_temp_qr`, `qr_ticket`, 
+      `qr_image`, `expire_time`)
+    values (#{wechatAppId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{sceneType,jdbcType=TINYINT}, 
+      #{scene,jdbcType=VARCHAR}, #{isTempQr,jdbcType=TINYINT}, #{qrTicket,jdbcType=VARCHAR}, 
+      #{qrImage,jdbcType=VARCHAR}, #{expireTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatmpqr">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_wechat_mp_qr`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wechatAppId != null">
+        `wechat_app_id`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="sceneType != null">
+        `scene_type`,
+      </if>
+      <if test="scene != null">
+        `scene`,
+      </if>
+      <if test="isTempQr != null">
+        `is_temp_qr`,
+      </if>
+      <if test="qrTicket != null">
+        `qr_ticket`,
+      </if>
+      <if test="qrImage != null">
+        `qr_image`,
+      </if>
+      <if test="expireTime != null">
+        `expire_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wechatAppId != null">
+        #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sceneType != null">
+        #{sceneType,jdbcType=TINYINT},
+      </if>
+      <if test="scene != null">
+        #{scene,jdbcType=VARCHAR},
+      </if>
+      <if test="isTempQr != null">
+        #{isTempQr,jdbcType=TINYINT},
+      </if>
+      <if test="qrTicket != null">
+        #{qrTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="qrImage != null">
+        #{qrImage,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatmpqr">
+    update `tab_user_wechat_mp_qr`
+    <set>
+      <if test="wechatAppId != null">
+        `wechat_app_id` = #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sceneType != null">
+        `scene_type` = #{sceneType,jdbcType=TINYINT},
+      </if>
+      <if test="scene != null">
+        `scene` = #{scene,jdbcType=VARCHAR},
+      </if>
+      <if test="isTempQr != null">
+        `is_temp_qr` = #{isTempQr,jdbcType=TINYINT},
+      </if>
+      <if test="qrTicket != null">
+        `qr_ticket` = #{qrTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="qrImage != null">
+        `qr_image` = #{qrImage,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        `expire_time` = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatmpqr">
+    update `tab_user_wechat_mp_qr`
+    set `wechat_app_id` = #{wechatAppId,jdbcType=VARCHAR},
+      `user_id` = #{userId,jdbcType=INTEGER},
+      `scene_type` = #{sceneType,jdbcType=TINYINT},
+      `scene` = #{scene,jdbcType=VARCHAR},
+      `is_temp_qr` = #{isTempQr,jdbcType=TINYINT},
+      `qr_ticket` = #{qrTicket,jdbcType=VARCHAR},
+      `qr_image` = #{qrImage,jdbcType=VARCHAR},
+      `expire_time` = #{expireTime,jdbcType=TIMESTAMP}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

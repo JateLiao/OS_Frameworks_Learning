@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserwechatlogMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatlog">
+    <id column="seq_id" jdbcType="INTEGER" property="seqId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="wechat_user_id" jdbcType="INTEGER" property="wechatUserId" />
+    <result column="action_flag" jdbcType="TINYINT" property="actionFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="upate_time" jdbcType="TIMESTAMP" property="upateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `seq_id`, `user_id`, `wechat_user_id`, `action_flag`, `create_time`, `upate_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_r_user_wechat_log`
+    where `seq_id` = #{seqId,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatlog">
+    insert into `tab_r_user_wechat_log` (`seq_id`, `user_id`, `wechat_user_id`, 
+      `action_flag`, `upate_time`)
+    values (#{seqId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{wechatUserId,jdbcType=INTEGER}, 
+      #{actionFlag,jdbcType=TINYINT}, #{upateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatlog">
+    insert into `tab_r_user_wechat_log`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        `seq_id`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="wechatUserId != null">
+        `wechat_user_id`,
+      </if>
+      <if test="actionFlag != null">
+        `action_flag`,
+      </if>
+      <if test="upateTime != null">
+        `upate_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        #{seqId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="wechatUserId != null">
+        #{wechatUserId,jdbcType=INTEGER},
+      </if>
+      <if test="actionFlag != null">
+        #{actionFlag,jdbcType=TINYINT},
+      </if>
+      <if test="upateTime != null">
+        #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatlog">
+    update `tab_r_user_wechat_log`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="wechatUserId != null">
+        `wechat_user_id` = #{wechatUserId,jdbcType=INTEGER},
+      </if>
+      <if test="actionFlag != null">
+        `action_flag` = #{actionFlag,jdbcType=TINYINT},
+      </if>
+      <if test="upateTime != null">
+        `upate_time` = #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `seq_id` = #{seqId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatlog">
+    update `tab_r_user_wechat_log`
+    set `user_id` = #{userId,jdbcType=INTEGER},
+      `wechat_user_id` = #{wechatUserId,jdbcType=INTEGER},
+      `action_flag` = #{actionFlag,jdbcType=TINYINT},
+      `upate_time` = #{upateTime,jdbcType=TIMESTAMP}
+    where `seq_id` = #{seqId,jdbcType=INTEGER}
+  </update>
+</mapper>

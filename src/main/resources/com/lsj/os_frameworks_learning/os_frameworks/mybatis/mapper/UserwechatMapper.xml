@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserwechatMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechat">
+    <id column="seq_id" jdbcType="INTEGER" property="seqId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="wechat_user_id" jdbcType="INTEGER" property="wechatUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `seq_id`, `user_id`, `wechat_user_id`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_r_user_wechat`
+    where `seq_id` = #{seqId,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechat">
+    insert into `tab_r_user_wechat` (`seq_id`, `user_id`, `wechat_user_id`
+      )
+    values (#{seqId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{wechatUserId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechat">
+    insert into `tab_r_user_wechat`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        `seq_id`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="wechatUserId != null">
+        `wechat_user_id`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        #{seqId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="wechatUserId != null">
+        #{wechatUserId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechat">
+    update `tab_r_user_wechat`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="wechatUserId != null">
+        `wechat_user_id` = #{wechatUserId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where `seq_id` = #{seqId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechat">
+    update `tab_r_user_wechat`
+    set `user_id` = #{userId,jdbcType=INTEGER},
+      `wechat_user_id` = #{wechatUserId,jdbcType=INTEGER}
+    where `seq_id` = #{seqId,jdbcType=INTEGER}
+  </update>
+</mapper>

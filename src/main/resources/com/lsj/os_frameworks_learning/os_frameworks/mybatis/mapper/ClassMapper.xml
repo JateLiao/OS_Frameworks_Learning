@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.ClassMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Class">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="key" jdbcType="VARCHAR" property="key" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="apply_end_time" jdbcType="TIMESTAMP" property="applyEndTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="auto_create" jdbcType="TINYINT" property="autoCreate" />
+    <result column="is_limit" jdbcType="TINYINT" property="isLimit" />
+    <result column="limit_num" jdbcType="INTEGER" property="limitNum" />
+    <result column="is_experience" jdbcType="TINYINT" property="isExperience" />
+    <result column="is_present" jdbcType="TINYINT" property="isPresent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `key`, `name`, `course_id`, `apply_end_time`, `create_time`, `update_time`, 
+    `auto_create`, `is_limit`, `limit_num`, `is_experience`, `is_present`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_class`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Class">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_class` (`key`, `name`, `course_id`, 
+      `apply_end_time`, `auto_create`, `is_limit`, 
+      `limit_num`, `is_experience`, `is_present`
+      )
+    values (#{key,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{courseId,jdbcType=INTEGER}, 
+      #{applyEndTime,jdbcType=TIMESTAMP}, #{autoCreate,jdbcType=TINYINT}, #{isLimit,jdbcType=TINYINT}, 
+      #{limitNum,jdbcType=INTEGER}, #{isExperience,jdbcType=TINYINT}, #{isPresent,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Class">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_class`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="key != null">
+        `key`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="courseId != null">
+        `course_id`,
+      </if>
+      <if test="applyEndTime != null">
+        `apply_end_time`,
+      </if>
+      <if test="autoCreate != null">
+        `auto_create`,
+      </if>
+      <if test="isLimit != null">
+        `is_limit`,
+      </if>
+      <if test="limitNum != null">
+        `limit_num`,
+      </if>
+      <if test="isExperience != null">
+        `is_experience`,
+      </if>
+      <if test="isPresent != null">
+        `is_present`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="applyEndTime != null">
+        #{applyEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="autoCreate != null">
+        #{autoCreate,jdbcType=TINYINT},
+      </if>
+      <if test="isLimit != null">
+        #{isLimit,jdbcType=TINYINT},
+      </if>
+      <if test="limitNum != null">
+        #{limitNum,jdbcType=INTEGER},
+      </if>
+      <if test="isExperience != null">
+        #{isExperience,jdbcType=TINYINT},
+      </if>
+      <if test="isPresent != null">
+        #{isPresent,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Class">
+    update `tab_class`
+    <set>
+      <if test="key != null">
+        `key` = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        `course_id` = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="applyEndTime != null">
+        `apply_end_time` = #{applyEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="autoCreate != null">
+        `auto_create` = #{autoCreate,jdbcType=TINYINT},
+      </if>
+      <if test="isLimit != null">
+        `is_limit` = #{isLimit,jdbcType=TINYINT},
+      </if>
+      <if test="limitNum != null">
+        `limit_num` = #{limitNum,jdbcType=INTEGER},
+      </if>
+      <if test="isExperience != null">
+        `is_experience` = #{isExperience,jdbcType=TINYINT},
+      </if>
+      <if test="isPresent != null">
+        `is_present` = #{isPresent,jdbcType=TINYINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Class">
+    update `tab_class`
+    set `key` = #{key,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `course_id` = #{courseId,jdbcType=INTEGER},
+      `apply_end_time` = #{applyEndTime,jdbcType=TIMESTAMP},
+      `auto_create` = #{autoCreate,jdbcType=TINYINT},
+      `is_limit` = #{isLimit,jdbcType=TINYINT},
+      `limit_num` = #{limitNum,jdbcType=INTEGER},
+      `is_experience` = #{isExperience,jdbcType=TINYINT},
+      `is_present` = #{isPresent,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

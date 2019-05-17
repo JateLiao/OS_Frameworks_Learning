@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.AffiliaterulecourseMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Affiliaterulecourse">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="affiliate_id" jdbcType="INTEGER" property="affiliateId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="poster_image" jdbcType="VARCHAR" property="posterImage" />
+    <result column="show_order" jdbcType="INTEGER" property="showOrder" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `affiliate_id`, `course_id`, `poster_image`, `show_order`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_r_affiliate_rule_course`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Affiliaterulecourse">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_r_affiliate_rule_course` (`affiliate_id`, `course_id`, `poster_image`, 
+      `show_order`)
+    values (#{affiliateId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{posterImage,jdbcType=VARCHAR}, 
+      #{showOrder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Affiliaterulecourse">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_r_affiliate_rule_course`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="affiliateId != null">
+        `affiliate_id`,
+      </if>
+      <if test="courseId != null">
+        `course_id`,
+      </if>
+      <if test="posterImage != null">
+        `poster_image`,
+      </if>
+      <if test="showOrder != null">
+        `show_order`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="affiliateId != null">
+        #{affiliateId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="posterImage != null">
+        #{posterImage,jdbcType=VARCHAR},
+      </if>
+      <if test="showOrder != null">
+        #{showOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Affiliaterulecourse">
+    update `tab_r_affiliate_rule_course`
+    <set>
+      <if test="affiliateId != null">
+        `affiliate_id` = #{affiliateId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        `course_id` = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="posterImage != null">
+        `poster_image` = #{posterImage,jdbcType=VARCHAR},
+      </if>
+      <if test="showOrder != null">
+        `show_order` = #{showOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Affiliaterulecourse">
+    update `tab_r_affiliate_rule_course`
+    set `affiliate_id` = #{affiliateId,jdbcType=INTEGER},
+      `course_id` = #{courseId,jdbcType=INTEGER},
+      `poster_image` = #{posterImage,jdbcType=VARCHAR},
+      `show_order` = #{showOrder,jdbcType=INTEGER}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

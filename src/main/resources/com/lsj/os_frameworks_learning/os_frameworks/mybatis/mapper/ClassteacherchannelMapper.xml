@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.ClassteacherchannelMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Classteacherchannel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="class_teacher_id" jdbcType="INTEGER" property="classTeacherId" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `class_teacher_id`, `channel`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_r_class_teacher_channel`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Classteacherchannel">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_r_class_teacher_channel` (`class_teacher_id`, `channel`)
+    values (#{classTeacherId,jdbcType=INTEGER}, #{channel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Classteacherchannel">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_r_class_teacher_channel`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classTeacherId != null">
+        `class_teacher_id`,
+      </if>
+      <if test="channel != null">
+        `channel`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classTeacherId != null">
+        #{classTeacherId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Classteacherchannel">
+    update `tab_r_class_teacher_channel`
+    <set>
+      <if test="classTeacherId != null">
+        `class_teacher_id` = #{classTeacherId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null">
+        `channel` = #{channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Classteacherchannel">
+    update `tab_r_class_teacher_channel`
+    set `class_teacher_id` = #{classTeacherId,jdbcType=INTEGER},
+      `channel` = #{channel,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

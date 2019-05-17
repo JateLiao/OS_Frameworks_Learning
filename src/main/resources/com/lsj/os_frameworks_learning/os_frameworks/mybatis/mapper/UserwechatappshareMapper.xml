@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserwechatappshareMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatappshare">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="wechat_app_id" jdbcType="VARCHAR" property="wechatAppId" />
+    <result column="wechat_app_share_key_prefix" jdbcType="VARCHAR" property="wechatAppShareKeyPrefix" />
+    <result column="target_page_path" jdbcType="VARCHAR" property="targetPagePath" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `user_id`, `wechat_app_id`, `wechat_app_share_key_prefix`, `target_page_path`, 
+    `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_user_wechat_app_share`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatappshare">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_wechat_app_share` (`user_id`, `wechat_app_id`, `wechat_app_share_key_prefix`, 
+      `target_page_path`)
+    values (#{userId,jdbcType=INTEGER}, #{wechatAppId,jdbcType=VARCHAR}, #{wechatAppShareKeyPrefix,jdbcType=VARCHAR}, 
+      #{targetPagePath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatappshare">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_wechat_app_share`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="wechatAppId != null">
+        `wechat_app_id`,
+      </if>
+      <if test="wechatAppShareKeyPrefix != null">
+        `wechat_app_share_key_prefix`,
+      </if>
+      <if test="targetPagePath != null">
+        `target_page_path`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="wechatAppId != null">
+        #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAppShareKeyPrefix != null">
+        #{wechatAppShareKeyPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="targetPagePath != null">
+        #{targetPagePath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatappshare">
+    update `tab_user_wechat_app_share`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="wechatAppId != null">
+        `wechat_app_id` = #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAppShareKeyPrefix != null">
+        `wechat_app_share_key_prefix` = #{wechatAppShareKeyPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="targetPagePath != null">
+        `target_page_path` = #{targetPagePath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userwechatappshare">
+    update `tab_user_wechat_app_share`
+    set `user_id` = #{userId,jdbcType=INTEGER},
+      `wechat_app_id` = #{wechatAppId,jdbcType=VARCHAR},
+      `wechat_app_share_key_prefix` = #{wechatAppShareKeyPrefix,jdbcType=VARCHAR},
+      `target_page_path` = #{targetPagePath,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

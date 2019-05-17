@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserpointstransferinhistoryMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userpointstransferinhistory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="points" jdbcType="INTEGER" property="points" />
+    <result column="transfer_status" jdbcType="INTEGER" property="transferStatus" />
+    <result column="is_schedule" jdbcType="TINYINT" property="isSchedule" />
+    <result column="schedule_time" jdbcType="TIMESTAMP" property="scheduleTime" />
+    <result column="has_cancel" jdbcType="TINYINT" property="hasCancel" />
+    <result column="cancel_flag" jdbcType="TINYINT" property="cancelFlag" />
+    <result column="action_type" jdbcType="TINYINT" property="actionType" />
+    <result column="action_target_id" jdbcType="VARCHAR" property="actionTargetId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `user_id`, `points`, `transfer_status`, `is_schedule`, `schedule_time`, `has_cancel`, 
+    `cancel_flag`, `action_type`, `action_target_id`, `remark`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_user_points_transfer_in_history`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userpointstransferinhistory">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_points_transfer_in_history` (`user_id`, `points`, `transfer_status`, 
+      `is_schedule`, `schedule_time`, `has_cancel`, 
+      `cancel_flag`, `action_type`, `action_target_id`, 
+      `remark`)
+    values (#{userId,jdbcType=INTEGER}, #{points,jdbcType=INTEGER}, #{transferStatus,jdbcType=INTEGER}, 
+      #{isSchedule,jdbcType=TINYINT}, #{scheduleTime,jdbcType=TIMESTAMP}, #{hasCancel,jdbcType=TINYINT}, 
+      #{cancelFlag,jdbcType=TINYINT}, #{actionType,jdbcType=TINYINT}, #{actionTargetId,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userpointstransferinhistory">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_points_transfer_in_history`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="points != null">
+        `points`,
+      </if>
+      <if test="transferStatus != null">
+        `transfer_status`,
+      </if>
+      <if test="isSchedule != null">
+        `is_schedule`,
+      </if>
+      <if test="scheduleTime != null">
+        `schedule_time`,
+      </if>
+      <if test="hasCancel != null">
+        `has_cancel`,
+      </if>
+      <if test="cancelFlag != null">
+        `cancel_flag`,
+      </if>
+      <if test="actionType != null">
+        `action_type`,
+      </if>
+      <if test="actionTargetId != null">
+        `action_target_id`,
+      </if>
+      <if test="remark != null">
+        `remark`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="points != null">
+        #{points,jdbcType=INTEGER},
+      </if>
+      <if test="transferStatus != null">
+        #{transferStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isSchedule != null">
+        #{isSchedule,jdbcType=TINYINT},
+      </if>
+      <if test="scheduleTime != null">
+        #{scheduleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hasCancel != null">
+        #{hasCancel,jdbcType=TINYINT},
+      </if>
+      <if test="cancelFlag != null">
+        #{cancelFlag,jdbcType=TINYINT},
+      </if>
+      <if test="actionType != null">
+        #{actionType,jdbcType=TINYINT},
+      </if>
+      <if test="actionTargetId != null">
+        #{actionTargetId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userpointstransferinhistory">
+    update `tab_user_points_transfer_in_history`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="points != null">
+        `points` = #{points,jdbcType=INTEGER},
+      </if>
+      <if test="transferStatus != null">
+        `transfer_status` = #{transferStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isSchedule != null">
+        `is_schedule` = #{isSchedule,jdbcType=TINYINT},
+      </if>
+      <if test="scheduleTime != null">
+        `schedule_time` = #{scheduleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hasCancel != null">
+        `has_cancel` = #{hasCancel,jdbcType=TINYINT},
+      </if>
+      <if test="cancelFlag != null">
+        `cancel_flag` = #{cancelFlag,jdbcType=TINYINT},
+      </if>
+      <if test="actionType != null">
+        `action_type` = #{actionType,jdbcType=TINYINT},
+      </if>
+      <if test="actionTargetId != null">
+        `action_target_id` = #{actionTargetId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        `remark` = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userpointstransferinhistory">
+    update `tab_user_points_transfer_in_history`
+    set `user_id` = #{userId,jdbcType=INTEGER},
+      `points` = #{points,jdbcType=INTEGER},
+      `transfer_status` = #{transferStatus,jdbcType=INTEGER},
+      `is_schedule` = #{isSchedule,jdbcType=TINYINT},
+      `schedule_time` = #{scheduleTime,jdbcType=TIMESTAMP},
+      `has_cancel` = #{hasCancel,jdbcType=TINYINT},
+      `cancel_flag` = #{cancelFlag,jdbcType=TINYINT},
+      `action_type` = #{actionType,jdbcType=TINYINT},
+      `action_target_id` = #{actionTargetId,jdbcType=VARCHAR},
+      `remark` = #{remark,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

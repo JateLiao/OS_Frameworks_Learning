@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.PopupboxMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupbox">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="link_type" jdbcType="TINYINT" property="linkType" />
+    <result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="voice_url" jdbcType="VARCHAR" property="voiceUrl" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `title`, `content`, `link_type`, `link_url`, `image_url`, `voice_url`, `status`, 
+    `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_popup_box`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupbox">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_popup_box` (`title`, `content`, `link_type`, 
+      `link_url`, `image_url`, `voice_url`, 
+      `status`)
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{linkType,jdbcType=TINYINT}, 
+      #{linkUrl,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, #{voiceUrl,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupbox">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_popup_box`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        `title`,
+      </if>
+      <if test="content != null">
+        `content`,
+      </if>
+      <if test="linkType != null">
+        `link_type`,
+      </if>
+      <if test="linkUrl != null">
+        `link_url`,
+      </if>
+      <if test="imageUrl != null">
+        `image_url`,
+      </if>
+      <if test="voiceUrl != null">
+        `voice_url`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="linkType != null">
+        #{linkType,jdbcType=TINYINT},
+      </if>
+      <if test="linkUrl != null">
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceUrl != null">
+        #{voiceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupbox">
+    update `tab_popup_box`
+    <set>
+      <if test="title != null">
+        `title` = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        `content` = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="linkType != null">
+        `link_type` = #{linkType,jdbcType=TINYINT},
+      </if>
+      <if test="linkUrl != null">
+        `link_url` = #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        `image_url` = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceUrl != null">
+        `voice_url` = #{voiceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupbox">
+    update `tab_popup_box`
+    set `title` = #{title,jdbcType=VARCHAR},
+      `content` = #{content,jdbcType=VARCHAR},
+      `link_type` = #{linkType,jdbcType=TINYINT},
+      `link_url` = #{linkUrl,jdbcType=VARCHAR},
+      `image_url` = #{imageUrl,jdbcType=VARCHAR},
+      `voice_url` = #{voiceUrl,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

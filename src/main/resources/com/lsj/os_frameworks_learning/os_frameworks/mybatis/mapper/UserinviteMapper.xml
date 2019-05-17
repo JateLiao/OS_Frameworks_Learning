@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserinviteMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userinvite">
+    <id column="seq_id" jdbcType="BIGINT" property="seqId" />
+    <result column="inviter_user_id" jdbcType="INTEGER" property="inviterUserId" />
+    <result column="invitee_user_id" jdbcType="INTEGER" property="inviteeUserId" />
+    <result column="invite_way" jdbcType="TINYINT" property="inviteWay" />
+    <result column="invite_way_type" jdbcType="TINYINT" property="inviteWayType" />
+    <result column="invite_target_id" jdbcType="VARCHAR" property="inviteTargetId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `seq_id`, `inviter_user_id`, `invitee_user_id`, `invite_way`, `invite_way_type`, 
+    `invite_target_id`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_user_invite`
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userinvite">
+    insert into `tab_user_invite` (`seq_id`, `inviter_user_id`, `invitee_user_id`, 
+      `invite_way`, `invite_way_type`, `invite_target_id`
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{inviterUserId,jdbcType=INTEGER}, #{inviteeUserId,jdbcType=INTEGER}, 
+      #{inviteWay,jdbcType=TINYINT}, #{inviteWayType,jdbcType=TINYINT}, #{inviteTargetId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userinvite">
+    insert into `tab_user_invite`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        `seq_id`,
+      </if>
+      <if test="inviterUserId != null">
+        `inviter_user_id`,
+      </if>
+      <if test="inviteeUserId != null">
+        `invitee_user_id`,
+      </if>
+      <if test="inviteWay != null">
+        `invite_way`,
+      </if>
+      <if test="inviteWayType != null">
+        `invite_way_type`,
+      </if>
+      <if test="inviteTargetId != null">
+        `invite_target_id`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        #{seqId,jdbcType=BIGINT},
+      </if>
+      <if test="inviterUserId != null">
+        #{inviterUserId,jdbcType=INTEGER},
+      </if>
+      <if test="inviteeUserId != null">
+        #{inviteeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="inviteWay != null">
+        #{inviteWay,jdbcType=TINYINT},
+      </if>
+      <if test="inviteWayType != null">
+        #{inviteWayType,jdbcType=TINYINT},
+      </if>
+      <if test="inviteTargetId != null">
+        #{inviteTargetId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userinvite">
+    update `tab_user_invite`
+    <set>
+      <if test="inviterUserId != null">
+        `inviter_user_id` = #{inviterUserId,jdbcType=INTEGER},
+      </if>
+      <if test="inviteeUserId != null">
+        `invitee_user_id` = #{inviteeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="inviteWay != null">
+        `invite_way` = #{inviteWay,jdbcType=TINYINT},
+      </if>
+      <if test="inviteWayType != null">
+        `invite_way_type` = #{inviteWayType,jdbcType=TINYINT},
+      </if>
+      <if test="inviteTargetId != null">
+        `invite_target_id` = #{inviteTargetId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userinvite">
+    update `tab_user_invite`
+    set `inviter_user_id` = #{inviterUserId,jdbcType=INTEGER},
+      `invitee_user_id` = #{inviteeUserId,jdbcType=INTEGER},
+      `invite_way` = #{inviteWay,jdbcType=TINYINT},
+      `invite_way_type` = #{inviteWayType,jdbcType=TINYINT},
+      `invite_target_id` = #{inviteTargetId,jdbcType=VARCHAR}
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </update>
+</mapper>

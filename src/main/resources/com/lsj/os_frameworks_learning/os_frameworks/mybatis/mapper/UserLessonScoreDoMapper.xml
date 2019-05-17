@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserLessonScoreDoMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.UserLessonScoreDo">
+    <id column="seq_id" jdbcType="BIGINT" property="seqId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="lesson_id" jdbcType="INTEGER" property="lessonId" />
+    <result column="step_type" jdbcType="TINYINT" property="stepType" />
+    <result column="step_id" jdbcType="TINYINT" property="stepId" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+    <result column="score" jdbcType="TINYINT" property="score" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    seq_id, user_id, class_id, lesson_id, step_type, step_id, batch_id, score, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.UserLessonScoreDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tab_user_lesson_score
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tab_user_lesson_score
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tab_user_lesson_score
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.UserLessonScoreDoExample">
+    delete from tab_user_lesson_score
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.UserLessonScoreDo">
+    <selectKey keyProperty="seqId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tab_user_lesson_score (user_id, class_id, lesson_id, 
+      step_type, step_id, batch_id, 
+      score, create_time, update_time
+      )
+    values (#{userId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{lessonId,jdbcType=INTEGER}, 
+      #{stepType,jdbcType=TINYINT}, #{stepId,jdbcType=TINYINT}, #{batchId,jdbcType=VARCHAR}, 
+      #{score,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.UserLessonScoreDo">
+    <selectKey keyProperty="seqId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tab_user_lesson_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="classId != null">
+        class_id,
+      </if>
+      <if test="lessonId != null">
+        lesson_id,
+      </if>
+      <if test="stepType != null">
+        step_type,
+      </if>
+      <if test="stepId != null">
+        step_id,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="stepType != null">
+        #{stepType,jdbcType=TINYINT},
+      </if>
+      <if test="stepId != null">
+        #{stepId,jdbcType=TINYINT},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.UserLessonScoreDoExample" resultType="java.lang.Long">
+    select count(*) from tab_user_lesson_score
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tab_user_lesson_score
+    <set>
+      <if test="record.seqId != null">
+        seq_id = #{record.seqId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null">
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.lessonId != null">
+        lesson_id = #{record.lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.stepType != null">
+        step_type = #{record.stepType,jdbcType=TINYINT},
+      </if>
+      <if test="record.stepId != null">
+        step_id = #{record.stepId,jdbcType=TINYINT},
+      </if>
+      <if test="record.batchId != null">
+        batch_id = #{record.batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tab_user_lesson_score
+    set seq_id = #{record.seqId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      lesson_id = #{record.lessonId,jdbcType=INTEGER},
+      step_type = #{record.stepType,jdbcType=TINYINT},
+      step_id = #{record.stepId,jdbcType=TINYINT},
+      batch_id = #{record.batchId,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.UserLessonScoreDo">
+    update tab_user_lesson_score
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        lesson_id = #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="stepType != null">
+        step_type = #{stepType,jdbcType=TINYINT},
+      </if>
+      <if test="stepId != null">
+        step_id = #{stepId,jdbcType=TINYINT},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.UserLessonScoreDo">
+    update tab_user_lesson_score
+    set user_id = #{userId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER},
+      lesson_id = #{lessonId,jdbcType=INTEGER},
+      step_type = #{stepType,jdbcType=TINYINT},
+      step_id = #{stepId,jdbcType=TINYINT},
+      batch_id = #{batchId,jdbcType=VARCHAR},
+      score = #{score,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserlessondatalogMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessondatalog">
+    <id column="seq_id" jdbcType="BIGINT" property="seqId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="lesson_id" jdbcType="INTEGER" property="lessonId" />
+    <result column="step_type" jdbcType="TINYINT" property="stepType" />
+    <result column="step_id" jdbcType="INTEGER" property="stepId" />
+    <result column="page_id" jdbcType="INTEGER" property="pageId" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+    <result column="data_type" jdbcType="TINYINT" property="dataType" />
+    <result column="data" jdbcType="VARCHAR" property="data" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `seq_id`, `user_id`, `class_id`, `lesson_id`, `step_type`, `step_id`, `page_id`, 
+    `batch_id`, `data_type`, `data`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_user_lesson_data_log`
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessondatalog">
+    insert into `tab_user_lesson_data_log` (`seq_id`, `user_id`, `class_id`, 
+      `lesson_id`, `step_type`, `step_id`, 
+      `page_id`, `batch_id`, `data_type`, 
+      `data`)
+    values (#{seqId,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, 
+      #{lessonId,jdbcType=INTEGER}, #{stepType,jdbcType=TINYINT}, #{stepId,jdbcType=INTEGER}, 
+      #{pageId,jdbcType=INTEGER}, #{batchId,jdbcType=VARCHAR}, #{dataType,jdbcType=TINYINT}, 
+      #{data,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessondatalog">
+    insert into `tab_user_lesson_data_log`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        `seq_id`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="classId != null">
+        `class_id`,
+      </if>
+      <if test="lessonId != null">
+        `lesson_id`,
+      </if>
+      <if test="stepType != null">
+        `step_type`,
+      </if>
+      <if test="stepId != null">
+        `step_id`,
+      </if>
+      <if test="pageId != null">
+        `page_id`,
+      </if>
+      <if test="batchId != null">
+        `batch_id`,
+      </if>
+      <if test="dataType != null">
+        `data_type`,
+      </if>
+      <if test="data != null">
+        `data`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        #{seqId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="stepType != null">
+        #{stepType,jdbcType=TINYINT},
+      </if>
+      <if test="stepId != null">
+        #{stepId,jdbcType=INTEGER},
+      </if>
+      <if test="pageId != null">
+        #{pageId,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=TINYINT},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessondatalog">
+    update `tab_user_lesson_data_log`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        `class_id` = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        `lesson_id` = #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="stepType != null">
+        `step_type` = #{stepType,jdbcType=TINYINT},
+      </if>
+      <if test="stepId != null">
+        `step_id` = #{stepId,jdbcType=INTEGER},
+      </if>
+      <if test="pageId != null">
+        `page_id` = #{pageId,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        `batch_id` = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        `data_type` = #{dataType,jdbcType=TINYINT},
+      </if>
+      <if test="data != null">
+        `data` = #{data,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessondatalog">
+    update `tab_user_lesson_data_log`
+    set `user_id` = #{userId,jdbcType=INTEGER},
+      `class_id` = #{classId,jdbcType=INTEGER},
+      `lesson_id` = #{lessonId,jdbcType=INTEGER},
+      `step_type` = #{stepType,jdbcType=TINYINT},
+      `step_id` = #{stepId,jdbcType=INTEGER},
+      `page_id` = #{pageId,jdbcType=INTEGER},
+      `batch_id` = #{batchId,jdbcType=VARCHAR},
+      `data_type` = #{dataType,jdbcType=TINYINT},
+      `data` = #{data,jdbcType=VARCHAR}
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </update>
+</mapper>

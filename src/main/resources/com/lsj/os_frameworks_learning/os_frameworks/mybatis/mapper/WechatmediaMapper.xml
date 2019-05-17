@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.WechatmediaMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmedia">
+    <id column="key" jdbcType="VARCHAR" property="key" />
+    <result column="brief" jdbcType="VARCHAR" property="brief" />
+    <result column="wechat_app_id" jdbcType="VARCHAR" property="wechatAppId" />
+    <result column="upload_api_type" jdbcType="TINYINT" property="uploadApiType" />
+    <result column="media_type" jdbcType="VARCHAR" property="mediaType" />
+    <result column="original_file" jdbcType="VARCHAR" property="originalFile" />
+    <result column="media_id" jdbcType="VARCHAR" property="mediaId" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="total_handle_times" jdbcType="INTEGER" property="totalHandleTimes" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `key`, `brief`, `wechat_app_id`, `upload_api_type`, `media_type`, `original_file`, 
+    `media_id`, `expire_time`, `total_handle_times`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_wechat_media`
+    where `key` = #{key,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmedia">
+    insert into `tab_wechat_media` (`key`, `brief`, `wechat_app_id`, 
+      `upload_api_type`, `media_type`, `original_file`, 
+      `media_id`, `expire_time`, `total_handle_times`
+      )
+    values (#{key,jdbcType=VARCHAR}, #{brief,jdbcType=VARCHAR}, #{wechatAppId,jdbcType=VARCHAR}, 
+      #{uploadApiType,jdbcType=TINYINT}, #{mediaType,jdbcType=VARCHAR}, #{originalFile,jdbcType=VARCHAR}, 
+      #{mediaId,jdbcType=VARCHAR}, #{expireTime,jdbcType=TIMESTAMP}, #{totalHandleTimes,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmedia">
+    insert into `tab_wechat_media`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="key != null">
+        `key`,
+      </if>
+      <if test="brief != null">
+        `brief`,
+      </if>
+      <if test="wechatAppId != null">
+        `wechat_app_id`,
+      </if>
+      <if test="uploadApiType != null">
+        `upload_api_type`,
+      </if>
+      <if test="mediaType != null">
+        `media_type`,
+      </if>
+      <if test="originalFile != null">
+        `original_file`,
+      </if>
+      <if test="mediaId != null">
+        `media_id`,
+      </if>
+      <if test="expireTime != null">
+        `expire_time`,
+      </if>
+      <if test="totalHandleTimes != null">
+        `total_handle_times`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null">
+        #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAppId != null">
+        #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadApiType != null">
+        #{uploadApiType,jdbcType=TINYINT},
+      </if>
+      <if test="mediaType != null">
+        #{mediaType,jdbcType=VARCHAR},
+      </if>
+      <if test="originalFile != null">
+        #{originalFile,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaId != null">
+        #{mediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalHandleTimes != null">
+        #{totalHandleTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmedia">
+    update `tab_wechat_media`
+    <set>
+      <if test="brief != null">
+        `brief` = #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAppId != null">
+        `wechat_app_id` = #{wechatAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadApiType != null">
+        `upload_api_type` = #{uploadApiType,jdbcType=TINYINT},
+      </if>
+      <if test="mediaType != null">
+        `media_type` = #{mediaType,jdbcType=VARCHAR},
+      </if>
+      <if test="originalFile != null">
+        `original_file` = #{originalFile,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaId != null">
+        `media_id` = #{mediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        `expire_time` = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalHandleTimes != null">
+        `total_handle_times` = #{totalHandleTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where `key` = #{key,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmedia">
+    update `tab_wechat_media`
+    set `brief` = #{brief,jdbcType=VARCHAR},
+      `wechat_app_id` = #{wechatAppId,jdbcType=VARCHAR},
+      `upload_api_type` = #{uploadApiType,jdbcType=TINYINT},
+      `media_type` = #{mediaType,jdbcType=VARCHAR},
+      `original_file` = #{originalFile,jdbcType=VARCHAR},
+      `media_id` = #{mediaId,jdbcType=VARCHAR},
+      `expire_time` = #{expireTime,jdbcType=TIMESTAMP},
+      `total_handle_times` = #{totalHandleTimes,jdbcType=INTEGER}
+    where `key` = #{key,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.UserlessonprizeMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessonprize">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="lesson_id" jdbcType="INTEGER" property="lessonId" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+    <result column="prize_level" jdbcType="TINYINT" property="prizeLevel" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `user_id`, `class_id`, `lesson_id`, `batch_id`, `prize_level`, `count`, `create_time`, 
+    `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_user_lesson_prize`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessonprize">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_lesson_prize` (`user_id`, `class_id`, `lesson_id`, 
+      `batch_id`, `prize_level`, `count`
+      )
+    values (#{userId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{lessonId,jdbcType=INTEGER}, 
+      #{batchId,jdbcType=VARCHAR}, #{prizeLevel,jdbcType=TINYINT}, #{count,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessonprize">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_lesson_prize`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="classId != null">
+        `class_id`,
+      </if>
+      <if test="lessonId != null">
+        `lesson_id`,
+      </if>
+      <if test="batchId != null">
+        `batch_id`,
+      </if>
+      <if test="prizeLevel != null">
+        `prize_level`,
+      </if>
+      <if test="count != null">
+        `count`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeLevel != null">
+        #{prizeLevel,jdbcType=TINYINT},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessonprize">
+    update `tab_user_lesson_prize`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        `class_id` = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        `lesson_id` = #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        `batch_id` = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeLevel != null">
+        `prize_level` = #{prizeLevel,jdbcType=TINYINT},
+      </if>
+      <if test="count != null">
+        `count` = #{count,jdbcType=INTEGER},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Userlessonprize">
+    update `tab_user_lesson_prize`
+    set `user_id` = #{userId,jdbcType=INTEGER},
+      `class_id` = #{classId,jdbcType=INTEGER},
+      `lesson_id` = #{lessonId,jdbcType=INTEGER},
+      `batch_id` = #{batchId,jdbcType=VARCHAR},
+      `prize_level` = #{prizeLevel,jdbcType=TINYINT},
+      `count` = #{count,jdbcType=INTEGER}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.WechatmpmsgeventMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgevent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="event_type" jdbcType="TINYINT" property="eventType" />
+    <result column="event_key" jdbcType="VARCHAR" property="eventKey" />
+    <result column="ticket" jdbcType="VARCHAR" property="ticket" />
+    <result column="location_x" jdbcType="VARCHAR" property="locationX" />
+    <result column="location_y" jdbcType="VARCHAR" property="locationY" />
+    <result column="precision" jdbcType="VARCHAR" property="precision" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `event_type`, `event_key`, `ticket`, `location_x`, `location_y`, `precision`, 
+    `create_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_wechat_mp_msg_event`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgevent">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wechat_mp_msg_event` (`event_type`, `event_key`, `ticket`, 
+      `location_x`, `location_y`, `precision`
+      )
+    values (#{eventType,jdbcType=TINYINT}, #{eventKey,jdbcType=VARCHAR}, #{ticket,jdbcType=VARCHAR}, 
+      #{locationX,jdbcType=VARCHAR}, #{locationY,jdbcType=VARCHAR}, #{precision,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgevent">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wechat_mp_msg_event`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eventType != null">
+        `event_type`,
+      </if>
+      <if test="eventKey != null">
+        `event_key`,
+      </if>
+      <if test="ticket != null">
+        `ticket`,
+      </if>
+      <if test="locationX != null">
+        `location_x`,
+      </if>
+      <if test="locationY != null">
+        `location_y`,
+      </if>
+      <if test="precision != null">
+        `precision`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eventType != null">
+        #{eventType,jdbcType=TINYINT},
+      </if>
+      <if test="eventKey != null">
+        #{eventKey,jdbcType=VARCHAR},
+      </if>
+      <if test="ticket != null">
+        #{ticket,jdbcType=VARCHAR},
+      </if>
+      <if test="locationX != null">
+        #{locationX,jdbcType=VARCHAR},
+      </if>
+      <if test="locationY != null">
+        #{locationY,jdbcType=VARCHAR},
+      </if>
+      <if test="precision != null">
+        #{precision,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgevent">
+    update `tab_wechat_mp_msg_event`
+    <set>
+      <if test="eventType != null">
+        `event_type` = #{eventType,jdbcType=TINYINT},
+      </if>
+      <if test="eventKey != null">
+        `event_key` = #{eventKey,jdbcType=VARCHAR},
+      </if>
+      <if test="ticket != null">
+        `ticket` = #{ticket,jdbcType=VARCHAR},
+      </if>
+      <if test="locationX != null">
+        `location_x` = #{locationX,jdbcType=VARCHAR},
+      </if>
+      <if test="locationY != null">
+        `location_y` = #{locationY,jdbcType=VARCHAR},
+      </if>
+      <if test="precision != null">
+        `precision` = #{precision,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Wechatmpmsgevent">
+    update `tab_wechat_mp_msg_event`
+    set `event_type` = #{eventType,jdbcType=TINYINT},
+      `event_key` = #{eventKey,jdbcType=VARCHAR},
+      `ticket` = #{ticket,jdbcType=VARCHAR},
+      `location_x` = #{locationX,jdbcType=VARCHAR},
+      `location_y` = #{locationY,jdbcType=VARCHAR},
+      `precision` = #{precision,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

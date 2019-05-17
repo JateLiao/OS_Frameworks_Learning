@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.ClassScheduleItemDoMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.ClassScheduleItemDo">
+    <id column="seq_id" jdbcType="INTEGER" property="seqId" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="lesson_id" jdbcType="INTEGER" property="lessonId" />
+    <result column="start_timestamp" jdbcType="TIMESTAMP" property="startTimestamp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    seq_id, class_id, lesson_id, start_timestamp
+  </sql>
+  <select id="selectByExample" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.ClassScheduleItemDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tab_class_schedule_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tab_class_schedule_item
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tab_class_schedule_item
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.ClassScheduleItemDoExample">
+    delete from tab_class_schedule_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.ClassScheduleItemDo">
+    <selectKey keyProperty="seqId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tab_class_schedule_item (class_id, lesson_id, start_timestamp
+      )
+    values (#{classId,jdbcType=INTEGER}, #{lessonId,jdbcType=INTEGER}, #{startTimestamp,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.ClassScheduleItemDo">
+    <selectKey keyProperty="seqId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tab_class_schedule_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classId != null">
+        class_id,
+      </if>
+      <if test="lessonId != null">
+        lesson_id,
+      </if>
+      <if test="startTimestamp != null">
+        start_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="startTimestamp != null">
+        #{startTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.ClassScheduleItemDoExample" resultType="java.lang.Long">
+    select count(*) from tab_class_schedule_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tab_class_schedule_item
+    <set>
+      <if test="record.seqId != null">
+        seq_id = #{record.seqId,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null">
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.lessonId != null">
+        lesson_id = #{record.lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTimestamp != null">
+        start_timestamp = #{record.startTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tab_class_schedule_item
+    set seq_id = #{record.seqId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      lesson_id = #{record.lessonId,jdbcType=INTEGER},
+      start_timestamp = #{record.startTimestamp,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.ClassScheduleItemDo">
+    update tab_class_schedule_item
+    <set>
+      <if test="classId != null">
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        lesson_id = #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="startTimestamp != null">
+        start_timestamp = #{startTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.ClassScheduleItemDo">
+    update tab_class_schedule_item
+    set class_id = #{classId,jdbcType=INTEGER},
+      lesson_id = #{lessonId,jdbcType=INTEGER},
+      start_timestamp = #{startTimestamp,jdbcType=TIMESTAMP}
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </update>
+</mapper>

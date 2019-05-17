@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao.PopupstatisticMapper">
+  <resultMap id="BaseResultMap" type="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupstatistic">
+    <id column="seq_id" jdbcType="BIGINT" property="seqId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="popup_id" jdbcType="INTEGER" property="popupId" />
+    <result column="event_type" jdbcType="TINYINT" property="eventType" />
+    <result column="event_value" jdbcType="VARCHAR" property="eventValue" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `seq_id`, `user_id`, `popup_id`, `event_type`, `event_value`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_popup_statistic`
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupstatistic">
+    insert into `tab_popup_statistic` (`seq_id`, `user_id`, `popup_id`, 
+      `event_type`, `event_value`)
+    values (#{seqId,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{popupId,jdbcType=INTEGER}, 
+      #{eventType,jdbcType=TINYINT}, #{eventValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupstatistic">
+    insert into `tab_popup_statistic`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        `seq_id`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="popupId != null">
+        `popup_id`,
+      </if>
+      <if test="eventType != null">
+        `event_type`,
+      </if>
+      <if test="eventValue != null">
+        `event_value`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        #{seqId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="popupId != null">
+        #{popupId,jdbcType=INTEGER},
+      </if>
+      <if test="eventType != null">
+        #{eventType,jdbcType=TINYINT},
+      </if>
+      <if test="eventValue != null">
+        #{eventValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupstatistic">
+    update `tab_popup_statistic`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="popupId != null">
+        `popup_id` = #{popupId,jdbcType=INTEGER},
+      </if>
+      <if test="eventType != null">
+        `event_type` = #{eventType,jdbcType=TINYINT},
+      </if>
+      <if test="eventValue != null">
+        `event_value` = #{eventValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model.Popupstatistic">
+    update `tab_popup_statistic`
+    set `user_id` = #{userId,jdbcType=INTEGER},
+      `popup_id` = #{popupId,jdbcType=INTEGER},
+      `event_type` = #{eventType,jdbcType=TINYINT},
+      `event_value` = #{eventValue,jdbcType=VARCHAR}
+    where `seq_id` = #{seqId,jdbcType=BIGINT}
+  </update>
+</mapper>
