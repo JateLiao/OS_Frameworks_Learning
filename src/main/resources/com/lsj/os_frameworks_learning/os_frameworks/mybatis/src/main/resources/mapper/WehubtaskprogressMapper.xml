@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WehubtaskprogressMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wehubtaskprogress">
+    <id column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="wxuid" jdbcType="BIGINT" property="wxuid" />
+    <result column="progress" jdbcType="INTEGER" property="progress" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="task_level" jdbcType="TINYINT" property="taskLevel" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.tinman.sharedservices.wms.provider.model.po.Wehubtaskprogress">
+    <result column="task_detail" jdbcType="LONGVARCHAR" property="taskDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `task_id`, `task_type`, `wxuid`, `progress`, `message`, `batch_id`, `create_time`, 
+    `update_time`, `task_level`
+  </sql>
+  <sql id="Blob_Column_List">
+    `task_detail`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `tab_wehub_task_progress`
+    where `task_id` = #{taskId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubtaskprogress">
+    insert into `tab_wehub_task_progress` (`task_id`, `task_type`, `wxuid`, 
+      `progress`, `message`, `batch_id`, 
+      `task_level`, `task_detail`)
+    values (#{taskId,jdbcType=VARCHAR}, #{taskType,jdbcType=INTEGER}, #{wxuid,jdbcType=BIGINT}, 
+      #{progress,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR}, #{batchId,jdbcType=VARCHAR}, 
+      #{taskLevel,jdbcType=TINYINT}, #{taskDetail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubtaskprogress">
+    insert into `tab_wehub_task_progress`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        `task_id`,
+      </if>
+      <if test="taskType != null">
+        `task_type`,
+      </if>
+      <if test="wxuid != null">
+        `wxuid`,
+      </if>
+      <if test="progress != null">
+        `progress`,
+      </if>
+      <if test="message != null">
+        `message`,
+      </if>
+      <if test="batchId != null">
+        `batch_id`,
+      </if>
+      <if test="taskLevel != null">
+        `task_level`,
+      </if>
+      <if test="taskDetail != null">
+        `task_detail`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="wxuid != null">
+        #{wxuid,jdbcType=BIGINT},
+      </if>
+      <if test="progress != null">
+        #{progress,jdbcType=INTEGER},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskLevel != null">
+        #{taskLevel,jdbcType=TINYINT},
+      </if>
+      <if test="taskDetail != null">
+        #{taskDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubtaskprogress">
+    update `tab_wehub_task_progress`
+    <set>
+      <if test="taskType != null">
+        `task_type` = #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="wxuid != null">
+        `wxuid` = #{wxuid,jdbcType=BIGINT},
+      </if>
+      <if test="progress != null">
+        `progress` = #{progress,jdbcType=INTEGER},
+      </if>
+      <if test="message != null">
+        `message` = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        `batch_id` = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskLevel != null">
+        `task_level` = #{taskLevel,jdbcType=TINYINT},
+      </if>
+      <if test="taskDetail != null">
+        `task_detail` = #{taskDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `task_id` = #{taskId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubtaskprogress">
+    update `tab_wehub_task_progress`
+    set `task_type` = #{taskType,jdbcType=INTEGER},
+      `wxuid` = #{wxuid,jdbcType=BIGINT},
+      `progress` = #{progress,jdbcType=INTEGER},
+      `message` = #{message,jdbcType=VARCHAR},
+      `batch_id` = #{batchId,jdbcType=VARCHAR},
+      `task_level` = #{taskLevel,jdbcType=TINYINT},
+      `task_detail` = #{taskDetail,jdbcType=LONGVARCHAR}
+    where `task_id` = #{taskId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubtaskprogress">
+    update `tab_wehub_task_progress`
+    set `task_type` = #{taskType,jdbcType=INTEGER},
+      `wxuid` = #{wxuid,jdbcType=BIGINT},
+      `progress` = #{progress,jdbcType=INTEGER},
+      `message` = #{message,jdbcType=VARCHAR},
+      `batch_id` = #{batchId,jdbcType=VARCHAR},
+      `task_level` = #{taskLevel,jdbcType=TINYINT}
+    where `task_id` = #{taskId,jdbcType=VARCHAR}
+  </update>
+</mapper>

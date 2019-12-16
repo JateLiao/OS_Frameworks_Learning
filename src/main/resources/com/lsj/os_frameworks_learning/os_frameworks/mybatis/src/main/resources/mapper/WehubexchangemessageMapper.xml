@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WehubexchangemessageMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wehubexchangemessage">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="wxuid" jdbcType="BIGINT" property="wxuid" />
+    <result column="exchange_type" jdbcType="TINYINT" property="exchangeType" />
+    <result column="exchange_step" jdbcType="TINYINT" property="exchangeStep" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.tinman.sharedservices.wms.provider.model.po.Wehubexchangemessage">
+    <result column="body" jdbcType="LONGVARCHAR" property="body" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `wxuid`, `exchange_type`, `exchange_step`, `create_time`, `update_time`
+  </sql>
+  <sql id="Blob_Column_List">
+    `body`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `tab_wehub_exchange_message`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubexchangemessage">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wehub_exchange_message` (`wxuid`, `exchange_type`, `exchange_step`, 
+      `body`)
+    values (#{wxuid,jdbcType=BIGINT}, #{exchangeType,jdbcType=TINYINT}, #{exchangeStep,jdbcType=TINYINT}, 
+      #{body,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubexchangemessage">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wehub_exchange_message`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wxuid != null">
+        `wxuid`,
+      </if>
+      <if test="exchangeType != null">
+        `exchange_type`,
+      </if>
+      <if test="exchangeStep != null">
+        `exchange_step`,
+      </if>
+      <if test="body != null">
+        `body`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wxuid != null">
+        #{wxuid,jdbcType=BIGINT},
+      </if>
+      <if test="exchangeType != null">
+        #{exchangeType,jdbcType=TINYINT},
+      </if>
+      <if test="exchangeStep != null">
+        #{exchangeStep,jdbcType=TINYINT},
+      </if>
+      <if test="body != null">
+        #{body,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubexchangemessage">
+    update `tab_wehub_exchange_message`
+    <set>
+      <if test="wxuid != null">
+        `wxuid` = #{wxuid,jdbcType=BIGINT},
+      </if>
+      <if test="exchangeType != null">
+        `exchange_type` = #{exchangeType,jdbcType=TINYINT},
+      </if>
+      <if test="exchangeStep != null">
+        `exchange_step` = #{exchangeStep,jdbcType=TINYINT},
+      </if>
+      <if test="body != null">
+        `body` = #{body,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubexchangemessage">
+    update `tab_wehub_exchange_message`
+    set `wxuid` = #{wxuid,jdbcType=BIGINT},
+      `exchange_type` = #{exchangeType,jdbcType=TINYINT},
+      `exchange_step` = #{exchangeStep,jdbcType=TINYINT},
+      `body` = #{body,jdbcType=LONGVARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubexchangemessage">
+    update `tab_wehub_exchange_message`
+    set `wxuid` = #{wxuid,jdbcType=BIGINT},
+      `exchange_type` = #{exchangeType,jdbcType=TINYINT},
+      `exchange_step` = #{exchangeStep,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

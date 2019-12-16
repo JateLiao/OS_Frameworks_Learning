@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WehubtasksendmessageMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wehubtasksendmessage">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="send_result" jdbcType="TINYINT" property="sendResult" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.tinman.sharedservices.wms.provider.model.po.WehubtasksendmessageWithBLOBs">
+    <result column="error_info" jdbcType="LONGVARCHAR" property="errorInfo" />
+    <result column="message_content" jdbcType="LONGVARCHAR" property="messageContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `task_id`, `task_type`, `send_result`, `create_time`, `update_time`
+  </sql>
+  <sql id="Blob_Column_List">
+    `error_info`, `message_content`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `tab_wehub_task_send_message`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.WehubtasksendmessageWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wehub_task_send_message` (`task_id`, `task_type`, `send_result`, 
+      `error_info`, `message_content`)
+    values (#{taskId,jdbcType=VARCHAR}, #{taskType,jdbcType=INTEGER}, #{sendResult,jdbcType=TINYINT}, 
+      #{errorInfo,jdbcType=LONGVARCHAR}, #{messageContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.WehubtasksendmessageWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wehub_task_send_message`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        `task_id`,
+      </if>
+      <if test="taskType != null">
+        `task_type`,
+      </if>
+      <if test="sendResult != null">
+        `send_result`,
+      </if>
+      <if test="errorInfo != null">
+        `error_info`,
+      </if>
+      <if test="messageContent != null">
+        `message_content`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="sendResult != null">
+        #{sendResult,jdbcType=TINYINT},
+      </if>
+      <if test="errorInfo != null">
+        #{errorInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="messageContent != null">
+        #{messageContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.WehubtasksendmessageWithBLOBs">
+    update `tab_wehub_task_send_message`
+    <set>
+      <if test="taskId != null">
+        `task_id` = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        `task_type` = #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="sendResult != null">
+        `send_result` = #{sendResult,jdbcType=TINYINT},
+      </if>
+      <if test="errorInfo != null">
+        `error_info` = #{errorInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="messageContent != null">
+        `message_content` = #{messageContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.tinman.sharedservices.wms.provider.model.po.WehubtasksendmessageWithBLOBs">
+    update `tab_wehub_task_send_message`
+    set `task_id` = #{taskId,jdbcType=VARCHAR},
+      `task_type` = #{taskType,jdbcType=INTEGER},
+      `send_result` = #{sendResult,jdbcType=TINYINT},
+      `error_info` = #{errorInfo,jdbcType=LONGVARCHAR},
+      `message_content` = #{messageContent,jdbcType=LONGVARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubtasksendmessage">
+    update `tab_wehub_task_send_message`
+    set `task_id` = #{taskId,jdbcType=VARCHAR},
+      `task_type` = #{taskType,jdbcType=INTEGER},
+      `send_result` = #{sendResult,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

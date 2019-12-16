@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WechatmpMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wechatmp">
+    <id column="wxmpid" jdbcType="BIGINT" property="wxmpid" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="head_img_url" jdbcType="VARCHAR" property="headImgUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `wxmpid`, `nickname`, `head_img_url`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_wechat_mp`
+    where `wxmpid` = #{wxmpid,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmp">
+    insert into `tab_wechat_mp` (`wxmpid`, `nickname`, `head_img_url`
+      )
+    values (#{wxmpid,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{headImgUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmp">
+    insert into `tab_wechat_mp`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wxmpid != null">
+        `wxmpid`,
+      </if>
+      <if test="nickname != null">
+        `nickname`,
+      </if>
+      <if test="headImgUrl != null">
+        `head_img_url`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wxmpid != null">
+        #{wxmpid,jdbcType=BIGINT},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headImgUrl != null">
+        #{headImgUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmp">
+    update `tab_wechat_mp`
+    <set>
+      <if test="nickname != null">
+        `nickname` = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headImgUrl != null">
+        `head_img_url` = #{headImgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `wxmpid` = #{wxmpid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmp">
+    update `tab_wechat_mp`
+    set `nickname` = #{nickname,jdbcType=VARCHAR},
+      `head_img_url` = #{headImgUrl,jdbcType=VARCHAR}
+    where `wxmpid` = #{wxmpid,jdbcType=BIGINT}
+  </update>
+</mapper>

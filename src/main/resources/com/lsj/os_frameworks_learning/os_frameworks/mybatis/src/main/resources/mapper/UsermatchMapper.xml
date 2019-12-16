@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.UsermatchMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Usermatch">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="wxuid" jdbcType="BIGINT" property="wxuid" />
+    <result column="buid" jdbcType="BIGINT" property="buid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `wxuid`, `buid`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_user_match`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Usermatch">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_match` (`wxuid`, `buid`)
+    values (#{wxuid,jdbcType=BIGINT}, #{buid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Usermatch">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_user_match`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wxuid != null">
+        `wxuid`,
+      </if>
+      <if test="buid != null">
+        `buid`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wxuid != null">
+        #{wxuid,jdbcType=BIGINT},
+      </if>
+      <if test="buid != null">
+        #{buid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Usermatch">
+    update `tab_user_match`
+    <set>
+      <if test="wxuid != null">
+        `wxuid` = #{wxuid,jdbcType=BIGINT},
+      </if>
+      <if test="buid != null">
+        `buid` = #{buid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Usermatch">
+    update `tab_user_match`
+    set `wxuid` = #{wxuid,jdbcType=BIGINT},
+      `buid` = #{buid,jdbcType=BIGINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

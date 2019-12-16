@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WehubusertaskconfigMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wehubusertaskconfig">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="whuid" jdbcType="BIGINT" property="whuid" />
+    <result column="task_type" jdbcType="TINYINT" property="taskType" />
+    <result column="interval_min" jdbcType="INTEGER" property="intervalMin" />
+    <result column="interval_max" jdbcType="INTEGER" property="intervalMax" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `whuid`, `task_type`, `interval_min`, `interval_max`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_wehub_user_task_config`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubusertaskconfig">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wehub_user_task_config` (`whuid`, `task_type`, `interval_min`, 
+      `interval_max`)
+    values (#{whuid,jdbcType=BIGINT}, #{taskType,jdbcType=TINYINT}, #{intervalMin,jdbcType=INTEGER}, 
+      #{intervalMax,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubusertaskconfig">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wehub_user_task_config`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="whuid != null">
+        `whuid`,
+      </if>
+      <if test="taskType != null">
+        `task_type`,
+      </if>
+      <if test="intervalMin != null">
+        `interval_min`,
+      </if>
+      <if test="intervalMax != null">
+        `interval_max`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="whuid != null">
+        #{whuid,jdbcType=BIGINT},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=TINYINT},
+      </if>
+      <if test="intervalMin != null">
+        #{intervalMin,jdbcType=INTEGER},
+      </if>
+      <if test="intervalMax != null">
+        #{intervalMax,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubusertaskconfig">
+    update `tab_wehub_user_task_config`
+    <set>
+      <if test="whuid != null">
+        `whuid` = #{whuid,jdbcType=BIGINT},
+      </if>
+      <if test="taskType != null">
+        `task_type` = #{taskType,jdbcType=TINYINT},
+      </if>
+      <if test="intervalMin != null">
+        `interval_min` = #{intervalMin,jdbcType=INTEGER},
+      </if>
+      <if test="intervalMax != null">
+        `interval_max` = #{intervalMax,jdbcType=INTEGER},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubusertaskconfig">
+    update `tab_wehub_user_task_config`
+    set `whuid` = #{whuid,jdbcType=BIGINT},
+      `task_type` = #{taskType,jdbcType=TINYINT},
+      `interval_min` = #{intervalMin,jdbcType=INTEGER},
+      `interval_max` = #{intervalMax,jdbcType=INTEGER}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

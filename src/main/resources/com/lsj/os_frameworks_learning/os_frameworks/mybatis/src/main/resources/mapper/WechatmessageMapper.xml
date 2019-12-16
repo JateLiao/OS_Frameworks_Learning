@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WechatmessageMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessage">
+    <id column="message_id" jdbcType="BIGINT" property="messageId" />
+    <result column="source_wxuid" jdbcType="BIGINT" property="sourceWxuid" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="wxgid" jdbcType="BIGINT" property="wxgid" />
+    <result column="wxuid_from" jdbcType="BIGINT" property="wxuidFrom" />
+    <result column="wxuid_to" jdbcType="BIGINT" property="wxuidTo" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+    <result column="file_index" jdbcType="VARCHAR" property="fileIndex" />
+    <result column="resource_url" jdbcType="VARCHAR" property="resourceUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessage">
+    <result column="raw_msg" jdbcType="LONGVARCHAR" property="rawMsg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `message_id`, `source_wxuid`, `type`, `wxgid`, `wxuid_from`, `wxuid_to`, `msg`, `file_index`, 
+    `resource_url`, `create_time`, `update_time`
+  </sql>
+  <sql id="Blob_Column_List">
+    `raw_msg`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `tab_wechat_message`
+    where `message_id` = #{messageId,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessage">
+    insert into `tab_wechat_message` (`message_id`, `source_wxuid`, `type`, 
+      `wxgid`, `wxuid_from`, `wxuid_to`, 
+      `msg`, `file_index`, `resource_url`, 
+      `raw_msg`)
+    values (#{messageId,jdbcType=BIGINT}, #{sourceWxuid,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, 
+      #{wxgid,jdbcType=BIGINT}, #{wxuidFrom,jdbcType=BIGINT}, #{wxuidTo,jdbcType=BIGINT}, 
+      #{msg,jdbcType=VARCHAR}, #{fileIndex,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, 
+      #{rawMsg,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessage">
+    insert into `tab_wechat_message`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        `message_id`,
+      </if>
+      <if test="sourceWxuid != null">
+        `source_wxuid`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="wxgid != null">
+        `wxgid`,
+      </if>
+      <if test="wxuidFrom != null">
+        `wxuid_from`,
+      </if>
+      <if test="wxuidTo != null">
+        `wxuid_to`,
+      </if>
+      <if test="msg != null">
+        `msg`,
+      </if>
+      <if test="fileIndex != null">
+        `file_index`,
+      </if>
+      <if test="resourceUrl != null">
+        `resource_url`,
+      </if>
+      <if test="rawMsg != null">
+        `raw_msg`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        #{messageId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceWxuid != null">
+        #{sourceWxuid,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="wxgid != null">
+        #{wxgid,jdbcType=BIGINT},
+      </if>
+      <if test="wxuidFrom != null">
+        #{wxuidFrom,jdbcType=BIGINT},
+      </if>
+      <if test="wxuidTo != null">
+        #{wxuidTo,jdbcType=BIGINT},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="fileIndex != null">
+        #{fileIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceUrl != null">
+        #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="rawMsg != null">
+        #{rawMsg,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessage">
+    update `tab_wechat_message`
+    <set>
+      <if test="sourceWxuid != null">
+        `source_wxuid` = #{sourceWxuid,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="wxgid != null">
+        `wxgid` = #{wxgid,jdbcType=BIGINT},
+      </if>
+      <if test="wxuidFrom != null">
+        `wxuid_from` = #{wxuidFrom,jdbcType=BIGINT},
+      </if>
+      <if test="wxuidTo != null">
+        `wxuid_to` = #{wxuidTo,jdbcType=BIGINT},
+      </if>
+      <if test="msg != null">
+        `msg` = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="fileIndex != null">
+        `file_index` = #{fileIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceUrl != null">
+        `resource_url` = #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="rawMsg != null">
+        `raw_msg` = #{rawMsg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `message_id` = #{messageId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessage">
+    update `tab_wechat_message`
+    set `source_wxuid` = #{sourceWxuid,jdbcType=BIGINT},
+      `type` = #{type,jdbcType=TINYINT},
+      `wxgid` = #{wxgid,jdbcType=BIGINT},
+      `wxuid_from` = #{wxuidFrom,jdbcType=BIGINT},
+      `wxuid_to` = #{wxuidTo,jdbcType=BIGINT},
+      `msg` = #{msg,jdbcType=VARCHAR},
+      `file_index` = #{fileIndex,jdbcType=VARCHAR},
+      `resource_url` = #{resourceUrl,jdbcType=VARCHAR},
+      `raw_msg` = #{rawMsg,jdbcType=LONGVARCHAR}
+    where `message_id` = #{messageId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessage">
+    update `tab_wechat_message`
+    set `source_wxuid` = #{sourceWxuid,jdbcType=BIGINT},
+      `type` = #{type,jdbcType=TINYINT},
+      `wxgid` = #{wxgid,jdbcType=BIGINT},
+      `wxuid_from` = #{wxuidFrom,jdbcType=BIGINT},
+      `wxuid_to` = #{wxuidTo,jdbcType=BIGINT},
+      `msg` = #{msg,jdbcType=VARCHAR},
+      `file_index` = #{fileIndex,jdbcType=VARCHAR},
+      `resource_url` = #{resourceUrl,jdbcType=VARCHAR}
+    where `message_id` = #{messageId,jdbcType=BIGINT}
+  </update>
+</mapper>

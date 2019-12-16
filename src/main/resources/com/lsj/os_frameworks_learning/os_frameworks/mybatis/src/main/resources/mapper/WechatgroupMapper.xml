@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WechatgroupMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wechatgroup">
+    <id column="wxgid" jdbcType="BIGINT" property="wxgid" />
+    <result column="wxid" jdbcType="VARCHAR" property="wxid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="owner_wxuid" jdbcType="BIGINT" property="ownerWxuid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `wxgid`, `wxid`, `name`, `owner_wxuid`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_wechat_group`
+    where `wxgid` = #{wxgid,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatgroup">
+    insert into `tab_wechat_group` (`wxgid`, `wxid`, `name`, 
+      `owner_wxuid`)
+    values (#{wxgid,jdbcType=BIGINT}, #{wxid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{ownerWxuid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatgroup">
+    insert into `tab_wechat_group`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wxgid != null">
+        `wxgid`,
+      </if>
+      <if test="wxid != null">
+        `wxid`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="ownerWxuid != null">
+        `owner_wxuid`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wxgid != null">
+        #{wxgid,jdbcType=BIGINT},
+      </if>
+      <if test="wxid != null">
+        #{wxid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerWxuid != null">
+        #{ownerWxuid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatgroup">
+    update `tab_wechat_group`
+    <set>
+      <if test="wxid != null">
+        `wxid` = #{wxid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerWxuid != null">
+        `owner_wxuid` = #{ownerWxuid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where `wxgid` = #{wxgid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatgroup">
+    update `tab_wechat_group`
+    set `wxid` = #{wxid,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `owner_wxuid` = #{ownerWxuid,jdbcType=BIGINT}
+    where `wxgid` = #{wxgid,jdbcType=BIGINT}
+  </update>
+</mapper>

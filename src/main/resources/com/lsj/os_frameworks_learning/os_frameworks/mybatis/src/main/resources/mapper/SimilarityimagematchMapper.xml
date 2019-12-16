@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.SimilarityimagematchMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Similarityimagematch">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="left_image_id" jdbcType="BIGINT" property="leftImageId" />
+    <result column="right_image_id" jdbcType="BIGINT" property="rightImageId" />
+    <result column="algorithm_id" jdbcType="TINYINT" property="algorithmId" />
+    <result column="match_result" jdbcType="VARCHAR" property="matchResult" />
+    <result column="match_type" jdbcType="TINYINT" property="matchType" />
+    <result column="match_threshold" jdbcType="DECIMAL" property="matchThreshold" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `left_image_id`, `right_image_id`, `algorithm_id`, `match_result`, `match_type`, 
+    `match_threshold`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_similarity_image_match`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Similarityimagematch">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_similarity_image_match` (`left_image_id`, `right_image_id`, `algorithm_id`, 
+      `match_result`, `match_type`, `match_threshold`
+      )
+    values (#{leftImageId,jdbcType=BIGINT}, #{rightImageId,jdbcType=BIGINT}, #{algorithmId,jdbcType=TINYINT}, 
+      #{matchResult,jdbcType=VARCHAR}, #{matchType,jdbcType=TINYINT}, #{matchThreshold,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Similarityimagematch">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_similarity_image_match`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="leftImageId != null">
+        `left_image_id`,
+      </if>
+      <if test="rightImageId != null">
+        `right_image_id`,
+      </if>
+      <if test="algorithmId != null">
+        `algorithm_id`,
+      </if>
+      <if test="matchResult != null">
+        `match_result`,
+      </if>
+      <if test="matchType != null">
+        `match_type`,
+      </if>
+      <if test="matchThreshold != null">
+        `match_threshold`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="leftImageId != null">
+        #{leftImageId,jdbcType=BIGINT},
+      </if>
+      <if test="rightImageId != null">
+        #{rightImageId,jdbcType=BIGINT},
+      </if>
+      <if test="algorithmId != null">
+        #{algorithmId,jdbcType=TINYINT},
+      </if>
+      <if test="matchResult != null">
+        #{matchResult,jdbcType=VARCHAR},
+      </if>
+      <if test="matchType != null">
+        #{matchType,jdbcType=TINYINT},
+      </if>
+      <if test="matchThreshold != null">
+        #{matchThreshold,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Similarityimagematch">
+    update `tab_similarity_image_match`
+    <set>
+      <if test="leftImageId != null">
+        `left_image_id` = #{leftImageId,jdbcType=BIGINT},
+      </if>
+      <if test="rightImageId != null">
+        `right_image_id` = #{rightImageId,jdbcType=BIGINT},
+      </if>
+      <if test="algorithmId != null">
+        `algorithm_id` = #{algorithmId,jdbcType=TINYINT},
+      </if>
+      <if test="matchResult != null">
+        `match_result` = #{matchResult,jdbcType=VARCHAR},
+      </if>
+      <if test="matchType != null">
+        `match_type` = #{matchType,jdbcType=TINYINT},
+      </if>
+      <if test="matchThreshold != null">
+        `match_threshold` = #{matchThreshold,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Similarityimagematch">
+    update `tab_similarity_image_match`
+    set `left_image_id` = #{leftImageId,jdbcType=BIGINT},
+      `right_image_id` = #{rightImageId,jdbcType=BIGINT},
+      `algorithm_id` = #{algorithmId,jdbcType=TINYINT},
+      `match_result` = #{matchResult,jdbcType=VARCHAR},
+      `match_type` = #{matchType,jdbcType=TINYINT},
+      `match_threshold` = #{matchThreshold,jdbcType=DECIMAL}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

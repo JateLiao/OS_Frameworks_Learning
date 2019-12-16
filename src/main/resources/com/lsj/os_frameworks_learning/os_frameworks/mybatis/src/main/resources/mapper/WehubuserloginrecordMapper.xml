@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WehubuserloginrecordMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wehubuserloginrecord">
+    <id column="record_id" jdbcType="BIGINT" property="recordId" />
+    <result column="whuid" jdbcType="BIGINT" property="whuid" />
+    <result column="login_type" jdbcType="TINYINT" property="loginType" />
+    <result column="conn_server" jdbcType="VARCHAR" property="connServer" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `record_id`, `whuid`, `login_type`, `conn_server`, `remark`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_wehub_user_login_record`
+    where `record_id` = #{recordId,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubuserloginrecord">
+    insert into `tab_wehub_user_login_record` (`record_id`, `whuid`, `login_type`, 
+      `conn_server`, `remark`)
+    values (#{recordId,jdbcType=BIGINT}, #{whuid,jdbcType=BIGINT}, #{loginType,jdbcType=TINYINT}, 
+      #{connServer,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubuserloginrecord">
+    insert into `tab_wehub_user_login_record`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        `record_id`,
+      </if>
+      <if test="whuid != null">
+        `whuid`,
+      </if>
+      <if test="loginType != null">
+        `login_type`,
+      </if>
+      <if test="connServer != null">
+        `conn_server`,
+      </if>
+      <if test="remark != null">
+        `remark`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=BIGINT},
+      </if>
+      <if test="whuid != null">
+        #{whuid,jdbcType=BIGINT},
+      </if>
+      <if test="loginType != null">
+        #{loginType,jdbcType=TINYINT},
+      </if>
+      <if test="connServer != null">
+        #{connServer,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubuserloginrecord">
+    update `tab_wehub_user_login_record`
+    <set>
+      <if test="whuid != null">
+        `whuid` = #{whuid,jdbcType=BIGINT},
+      </if>
+      <if test="loginType != null">
+        `login_type` = #{loginType,jdbcType=TINYINT},
+      </if>
+      <if test="connServer != null">
+        `conn_server` = #{connServer,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        `remark` = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `record_id` = #{recordId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubuserloginrecord">
+    update `tab_wehub_user_login_record`
+    set `whuid` = #{whuid,jdbcType=BIGINT},
+      `login_type` = #{loginType,jdbcType=TINYINT},
+      `conn_server` = #{connServer,jdbcType=VARCHAR},
+      `remark` = #{remark,jdbcType=VARCHAR}
+    where `record_id` = #{recordId,jdbcType=BIGINT}
+  </update>
+</mapper>

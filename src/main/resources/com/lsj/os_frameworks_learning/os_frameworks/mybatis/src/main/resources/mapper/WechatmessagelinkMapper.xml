@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WechatmessagelinkMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessagelink">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="message_id" jdbcType="BIGINT" property="messageId" />
+    <result column="link_title" jdbcType="VARCHAR" property="linkTitle" />
+    <result column="link_desc" jdbcType="VARCHAR" property="linkDesc" />
+    <result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="link_img_url" jdbcType="VARCHAR" property="linkImgUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `message_id`, `link_title`, `link_desc`, `link_url`, `link_img_url`, `create_time`, 
+    `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_wechat_message_link`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessagelink">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wechat_message_link` (`message_id`, `link_title`, `link_desc`, 
+      `link_url`, `link_img_url`)
+    values (#{messageId,jdbcType=BIGINT}, #{linkTitle,jdbcType=VARCHAR}, #{linkDesc,jdbcType=VARCHAR}, 
+      #{linkUrl,jdbcType=VARCHAR}, #{linkImgUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessagelink">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `tab_wechat_message_link`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        `message_id`,
+      </if>
+      <if test="linkTitle != null">
+        `link_title`,
+      </if>
+      <if test="linkDesc != null">
+        `link_desc`,
+      </if>
+      <if test="linkUrl != null">
+        `link_url`,
+      </if>
+      <if test="linkImgUrl != null">
+        `link_img_url`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        #{messageId,jdbcType=BIGINT},
+      </if>
+      <if test="linkTitle != null">
+        #{linkTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="linkDesc != null">
+        #{linkDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null">
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkImgUrl != null">
+        #{linkImgUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessagelink">
+    update `tab_wechat_message_link`
+    <set>
+      <if test="messageId != null">
+        `message_id` = #{messageId,jdbcType=BIGINT},
+      </if>
+      <if test="linkTitle != null">
+        `link_title` = #{linkTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="linkDesc != null">
+        `link_desc` = #{linkDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null">
+        `link_url` = #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkImgUrl != null">
+        `link_img_url` = #{linkImgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wechatmessagelink">
+    update `tab_wechat_message_link`
+    set `message_id` = #{messageId,jdbcType=BIGINT},
+      `link_title` = #{linkTitle,jdbcType=VARCHAR},
+      `link_desc` = #{linkDesc,jdbcType=VARCHAR},
+      `link_url` = #{linkUrl,jdbcType=VARCHAR},
+      `link_img_url` = #{linkImgUrl,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

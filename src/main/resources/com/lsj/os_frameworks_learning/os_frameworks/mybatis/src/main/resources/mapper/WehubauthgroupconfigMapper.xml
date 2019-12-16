@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.WehubauthgroupconfigMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Wehubauthgroupconfig">
+    <id column="wxgid" jdbcType="BIGINT" property="wxgid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `wxgid`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_wehub_auth_group_config`
+    where `wxgid` = #{wxgid,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubauthgroupconfig">
+    insert into `tab_wehub_auth_group_config` (`wxgid`)
+    values (#{wxgid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Wehubauthgroupconfig">
+    insert into `tab_wehub_auth_group_config`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wxgid != null">
+        `wxgid`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wxgid != null">
+        #{wxgid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.BusinessuserMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Businessuser">
+    <id column="buid" jdbcType="BIGINT" property="buid" />
+    <result column="project_id" jdbcType="TINYINT" property="projectId" />
+    <result column="project_uid" jdbcType="BIGINT" property="projectUid" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="head_img_url" jdbcType="VARCHAR" property="headImgUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `buid`, `project_id`, `project_uid`, `nickname`, `head_img_url`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_business_user`
+    where `buid` = #{buid,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Businessuser">
+    insert into `tab_business_user` (`buid`, `project_id`, `project_uid`, 
+      `nickname`, `head_img_url`)
+    values (#{buid,jdbcType=BIGINT}, #{projectId,jdbcType=TINYINT}, #{projectUid,jdbcType=BIGINT}, 
+      #{nickname,jdbcType=VARCHAR}, #{headImgUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Businessuser">
+    insert into `tab_business_user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="buid != null">
+        `buid`,
+      </if>
+      <if test="projectId != null">
+        `project_id`,
+      </if>
+      <if test="projectUid != null">
+        `project_uid`,
+      </if>
+      <if test="nickname != null">
+        `nickname`,
+      </if>
+      <if test="headImgUrl != null">
+        `head_img_url`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="buid != null">
+        #{buid,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=TINYINT},
+      </if>
+      <if test="projectUid != null">
+        #{projectUid,jdbcType=BIGINT},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headImgUrl != null">
+        #{headImgUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Businessuser">
+    update `tab_business_user`
+    <set>
+      <if test="projectId != null">
+        `project_id` = #{projectId,jdbcType=TINYINT},
+      </if>
+      <if test="projectUid != null">
+        `project_uid` = #{projectUid,jdbcType=BIGINT},
+      </if>
+      <if test="nickname != null">
+        `nickname` = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headImgUrl != null">
+        `head_img_url` = #{headImgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `buid` = #{buid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Businessuser">
+    update `tab_business_user`
+    set `project_id` = #{projectId,jdbcType=TINYINT},
+      `project_uid` = #{projectUid,jdbcType=BIGINT},
+      `nickname` = #{nickname,jdbcType=VARCHAR},
+      `head_img_url` = #{headImgUrl,jdbcType=VARCHAR}
+    where `buid` = #{buid,jdbcType=BIGINT}
+  </update>
+</mapper>

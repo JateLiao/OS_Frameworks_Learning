@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tinman.sharedservices.wms.provider.dao.SimilarityimageMapper">
+  <resultMap id="BaseResultMap" type="cn.tinman.sharedservices.wms.provider.model.po.Similarityimage">
+    <id column="image_id" jdbcType="BIGINT" property="imageId" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="url_md5" jdbcType="VARCHAR" property="urlMd5" />
+    <result column="body_sha1" jdbcType="VARCHAR" property="bodySha1" />
+    <result column="body_hash_expire_time" jdbcType="TIMESTAMP" property="bodyHashExpireTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `image_id`, `url`, `url_md5`, `body_sha1`, `body_hash_expire_time`, `create_time`, 
+    `update_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tab_similarity_image`
+    where `image_id` = #{imageId,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Similarityimage">
+    insert into `tab_similarity_image` (`image_id`, `url`, `url_md5`, 
+      `body_sha1`, `body_hash_expire_time`)
+    values (#{imageId,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{urlMd5,jdbcType=VARCHAR}, 
+      #{bodySha1,jdbcType=VARCHAR}, #{bodyHashExpireTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Similarityimage">
+    insert into `tab_similarity_image`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imageId != null">
+        `image_id`,
+      </if>
+      <if test="url != null">
+        `url`,
+      </if>
+      <if test="urlMd5 != null">
+        `url_md5`,
+      </if>
+      <if test="bodySha1 != null">
+        `body_sha1`,
+      </if>
+      <if test="bodyHashExpireTime != null">
+        `body_hash_expire_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imageId != null">
+        #{imageId,jdbcType=BIGINT},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="urlMd5 != null">
+        #{urlMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="bodySha1 != null">
+        #{bodySha1,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyHashExpireTime != null">
+        #{bodyHashExpireTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Similarityimage">
+    update `tab_similarity_image`
+    <set>
+      <if test="url != null">
+        `url` = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="urlMd5 != null">
+        `url_md5` = #{urlMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="bodySha1 != null">
+        `body_sha1` = #{bodySha1,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyHashExpireTime != null">
+        `body_hash_expire_time` = #{bodyHashExpireTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `image_id` = #{imageId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tinman.sharedservices.wms.provider.model.po.Similarityimage">
+    update `tab_similarity_image`
+    set `url` = #{url,jdbcType=VARCHAR},
+      `url_md5` = #{urlMd5,jdbcType=VARCHAR},
+      `body_sha1` = #{bodySha1,jdbcType=VARCHAR},
+      `body_hash_expire_time` = #{bodyHashExpireTime,jdbcType=TIMESTAMP}
+    where `image_id` = #{imageId,jdbcType=BIGINT}
+  </update>
+</mapper>

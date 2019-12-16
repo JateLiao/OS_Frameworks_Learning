@@ -28,15 +28,15 @@
         </commentGenerator>
 
         <!-- 数据库连接 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://liaoshijie.wiki:3306/jojoread"
-                        userId="root" password="root"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/wechat_manage"
+                        userId="root" password="test"/>
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal -->
         <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
         <!-- 数据库对应的model层 -->
-        <javaModelGenerator targetPackage="com.lsj.os_frameworks_learning.os_frameworks.mybatis.model"
+        <javaModelGenerator targetPackage="cn.tinman.sharedservices.wms.provider.model.po"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
@@ -48,7 +48,7 @@
         </sqlMapGenerator>
 
         <!-- mapper接口 -->
-        <javaClientGenerator targetPackage="com.lsj.os_frameworks_learning.os_frameworks.mybatis.dao" type="XMLMAPPER"
+        <javaClientGenerator targetPackage="cn.tinman.sharedservices.wms.provider.dao" type="XMLMAPPER"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
@@ -75,122 +75,10 @@
             <columnOverride column="update_time" isGeneratedAlways="true"/>
         </table>
 
-        <!-- 特殊配置 -->
-        <table tableName="tab_beta_list" domainObjectName="BetaListDO">
+        <!-- 特殊配置 
+        <table tableName="tab_user_lesson_answer" domainObjectName="UserLessonAnswer">
             <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_share_r_course_exam" domainObjectName="ShareCourseExamDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_class_schedule_item" domainObjectName="ClassScheduleItemDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_lesson_question_anwser" domainObjectName="LessonQuestionAnswerDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_order" domainObjectName="OrderDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_oss_bucket" domainObjectName="OssBucketDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_oss_bucket_resource" domainObjectName="OssBucketResourceDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_param" domainObjectName="ParamDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_param_version_value" domainObjectName="ParamVersionValueDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_push_wechat_template_message" domainObjectName="PushWechatTemplateMessgaeDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_push_wechat_template_message_log" domainObjectName="PushWechatTemplateMessageLogDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_r_order_coupon" domainObjectName="OrderCouponDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_r_order_pay_wechat" domainObjectName="OrderPayWechatDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_r_order_pay_wechat_callback" domainObjectName="OrderWechatCallbackDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_r_order_product_course" domainObjectName="OrderProductCourseDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_r_product_course_sku_course" domainObjectName="ProductCourseSkuCourseDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_r_user_wechat" domainObjectName="UserWechatDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_r_user_wechat_log" domainObjectName="UserWechatLogDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_share_r_read_notes" domainObjectName="ShareReadNotesDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_user_class_log" domainObjectName="UserClassLogDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_user_coupon_log" domainObjectName="UserCouponLogDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_user_lesson_data" domainObjectName="UserLessonDataDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_user_lesson_data_log" domainObjectName="UserLessonDataLogDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_user_lesson_score" domainObjectName="UserLessonScoreDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_user_lesson_score_log" domainObjectName="UserLessonScoreLogDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_user_openinfo" domainObjectName="UserOpenInfoDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_wechat_info" domainObjectName="WechatInfoDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_wechat_user_follow" domainObjectName="WechatUserFollowDo">
-            <generatedKey column="seq_id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="tab_redeem_code_delivery"
-               domainObjectName="RedeemCodeDeliveryDo">
-        </table>
+        </table>-->
 
     </context>
 </generatorConfiguration>
